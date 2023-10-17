@@ -1,0 +1,6 @@
+AddType application/x-httpd-php .html 
+RewriteBase /fc2/
+RewriteRule ^index\.php$ - [L]
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule . /fc2/index.php [L]

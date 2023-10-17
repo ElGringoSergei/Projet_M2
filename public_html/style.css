@@ -1,0 +1,62 @@
+.forms-perso {
+    margin-left: 20%;
+    margin-right: 20%;
+    margin-top: 5%;
+}
+
+body {
+    background-color: darkgray;
+}
+
+#navbar-top {
+    color: gray;
+}
+
+.nav-pages:hover {
+    color: grey;
+}
+
+
+
+#new-account {
+    margin-left: 2%;
+}
+
+#grid-account {
+    display: flex;
+    flex-flow: row;
+    justify-content:flex-start;
+}
+
+#flex-item {
+    margin-left: 2%;
+    margin-bottom: 1%;
+}
+
+.red {
+    color: rgb(202, 56, 56);
+    margin-left: 20%;
+    margin-right: 20%;
+    margin-top: 2%;
+}
+
+.forms-perso1 {
+    margin-left: 30%;
+    margin-right: 30%;
+    margin-top: 5%;
+}
+
+#image {
+    max-width: 80%;
+    max-height: 60%;
+}
+
+.error {
+    color: #d14545;
+}
+
+.success {
+    color: #3fd16b;
+}
+
+
