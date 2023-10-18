@@ -84,8 +84,9 @@ else { echo '<a class="nav-link" href="./login.php" id="se_connecter">Se connect
                 <form action="php/upload.php" method="post" enctype="multipart/form-data" style="margin-top: 1%">
                     <div class="input-group mb-3">
                         <button type="submit" class="input-group-text btn btn-outline-primary" for="inputGroupFile01">Importer</button>
-                        <input type="file" accept=".pdf, .jpg" class="form-control" name="inputGroupFile01" id="inputGroupFile01"> 
+                        <input type="file" accept=".pdf, .jpg" class="form-control" name="inputGroupFile01" id="inputGroupFile01">
                     </div>
+                    <label for="inputGroupFile01" class="label-file">Taille max. 500 Ko</label>
                     <div>
                         <?php if(isset($_GET['error']) && ($_GET['error'] == ('Désolé, ce fichier existe déjà.' || 'Désolé, le fichier est trop lourd.' || 'Désolé, seuls les fichiers PDF et JPG sont autorisés.' || "Désolé, le fichier n'a pas pû être importé." || "Désolé, il y a eu une erreur lors de l'importation de votre fichier."))) echo "<p class='error'>" . $_GET['error'] . "</p>"; ?>
                         <?php if(isset($_GET['success']) && ($_GET['success'] == ("Le fichier a été importé avec succès."))) echo "<p class='success'>" . $_GET['success'] . "</p>"; ?>
