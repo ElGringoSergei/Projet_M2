@@ -2,6 +2,7 @@
     session_start();
     $files = json_encode(shell_exec('ls -lh /var/www/html/uploads'));
     $arr_files = str_replace('"', '', explode('\n', $files));
+    
 
 ?>
 
@@ -55,8 +56,28 @@ else { echo '<a class="nav-link" href="./login.php" id="se_connecter">Se connect
                 </div>
 
             </li>
-            <?php for($i = 1; $i < (sizeof($arr_files) - 1); $i++) {
-                echo '<li class="list-group-item d-flex justify-content-between align-items-start"><div>' . $arr_files[$i] . '</div></li>'; 
+            <?php 
+            for($i = 1; $i < (sizeof($arr_files) - 1); $i++) {
+                $arr_files[$i] = str_replace(" ", "|", $arr_files[$i]);
+                $elements = str_replace('"', '', explode("|", str_replace('||', '|', $arr_files[$i])));
+                echo '<li class="list-group-item d-flex justify-content-between align-items-start"><div class="container text-center">
+                <div class="row">
+                  <div class="col">
+                    <p style="font-weight: bold">Nom du fichier</p><p>' . $elements[8] .
+                  '</p></div>
+                  <div class="col">
+                    <p style="font-weight: bold">Taille du fichier</p><p>' . $elements[4] .
+                  '</p></div>
+                  <div class="col">
+                    <p style="font-weight: bold">Date</p><p>' . $elements[6] . " " . $elements[5] . " " . $elements[7] .
+                  '</p></div>
+                  <div class="col">
+                    <form action="php/delete_file.php" method="post">
+                        <button type="submit" class="btn btn-outline-danger" style="margin-top: 10%" name="delete">Supprimer le fichier</button>
+                    </form>
+                  </div>
+                </div>
+              </div></li>'; 
             }; ?>
             <li class="list-group-item d-flex justify-content-between align-items-start">
                 <form action="php/upload.php" method="post" enctype="multipart/form-data" style="margin-top: 1%">
