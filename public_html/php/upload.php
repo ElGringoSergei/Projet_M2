@@ -1,6 +1,8 @@
 <?php
 $target_dir = "../uploads/";
-$target_file = $target_dir . basename(str_replace(' ', '_', $_FILES["inputGroupFile01"]["name"]));
+$rep_arr = array(' ','é','à','è','ç','ê','â','ï','û','ô');
+$arr_rep = array('_','e','a','e','c','e','a','i','u','o');
+$target_file = $target_dir . basename(str_replace($rep_arr, $arr_rep, $_FILES["inputGroupFile01"]["name"]));
 $uploadOk = 1;
 $imageFileType = strtolower(pathinfo($target_file,PATHINFO_EXTENSION));
 
