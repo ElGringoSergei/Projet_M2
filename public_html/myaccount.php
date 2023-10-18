@@ -102,6 +102,7 @@
     <form method="post" action="./php/disconnect.php">    
 	<button type="submit" style="text-align: center; margin-left: 30%; margin-top: 2%;" class="btn btn-outline-danger" name="disconnect">Se déconnecter</button>
 	<button type="submit" style="margin-left: 1%; margin-top: 2%;" class="btn btn-outline-primary" name="reserver">Réserver des ressources</button>
+    <button type="submit" style="margin-left: 1%; margin-top: 2%;" class="btn btn-outline-primary" name="upload">Importer des fichiers</button>
 
     </form>';
     }

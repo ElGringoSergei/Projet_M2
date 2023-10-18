@@ -140,3 +140,18 @@ function search_launched(recherche) {
 	resultat_recherche.innerHTML = recherche;
 }
 
+
+var file = document.getElementById("inputGroupFile01");
+
+file.onchange = function(e) {
+    var ext = this.value.match(/\.([^\.]+)$/)[1];
+    switch (ext) {
+        case 'pdf':
+        case 'jpg':
+            break;
+        default:
+            alert('Fichier non autorisé');
+            this.value = '';
+    }
+};
+

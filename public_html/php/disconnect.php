@@ -10,4 +10,7 @@
 	if(isset($_POST['reserver'])) {
 		header("Location: ../reserver.php");
 	}
+	if(isset($_POST['upload'])) {
+		header("Location: ../file_upload.php");
+	}
 ?>
