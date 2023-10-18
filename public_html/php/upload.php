@@ -8,28 +8,28 @@ $imageFileType = strtolower(pathinfo($target_file,PATHINFO_EXTENSION));
 
 
 
-// Check if file already exists
+// Verification de fichier existant
 if (file_exists($target_file)) {
   header("Location: ../file_upload.php?error=Désolé, ce fichier existe déjà.");
   $uploadOk = 0;
 }
 
-// Check file size
+// Verification de la taille du fichier
 if ($_FILES["inputGroupFile01"]["size"] > 500000) {
   header("Location: ../file_upload.php?error=Désolé, le fichier est trop lourd.");
   $uploadOk = 0;
 }
 
-// Allow certain file formats
+// Verification de l'extension du fichier
 if($imageFileType != "pdf" && $imageFileType != "jpg") {
   header("Location: ../file_upload.php?error=Désolé, seuls les fichiers PDF et JPG sont autorisés.");
   $uploadOk = 0;
 }
 
-// Check if $uploadOk is set to 0 by an error
+
 if ($uploadOk == 0) {
   
-// if everything is ok, try to upload file
+// si tout est bon, on essaie d'upload le fichiers
 } else {
   if (move_uploaded_file($_FILES["inputGroupFile01"]["tmp_name"], $target_file)) {
     header("Location: ../file_upload.php?success=Le fichier a été importé avec succès.");
