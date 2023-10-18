@@ -1,6 +1,7 @@
 <?php
     session_start();
-    $files = shell_exec ('ls /usr/local/apache2/htdocs/uploads');
+    $files = json_encode(shell_exec('ls -lh /var/www/html/uploads'));
+    $arr_files = str_replace('"', '', explode('\n', $files));
 
 ?>
 
@@ -54,9 +55,9 @@ else { echo '<a class="nav-link" href="./login.php" id="se_connecter">Se connect
                 </div>
 
             </li>
-            <li class="list-group-item d-flex justify-content-between align-items-start">
-                <p><?php echo $files; ?></p>
-            </li>
+            <?php for($i = 1; $i < (sizeof($arr_files) - 1); $i++) {
+                echo '<li class="list-group-item d-flex justify-content-between align-items-start"><div>' . $arr_files[$i] . '</div></li>'; 
+            }; ?>
             <li class="list-group-item d-flex justify-content-between align-items-start">
                 <form action="php/upload.php" method="post" enctype="multipart/form-data" style="margin-top: 1%">
                     <div class="input-group mb-3">
