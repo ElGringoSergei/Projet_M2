@@ -73,7 +73,8 @@ else { echo '<a class="nav-link" href="./login.php" id="se_connecter">Se connect
                   '</p></div>
                   <div class="col">
                     <form action="php/delete_file.php" method="post">
-                        <button type="submit" class="btn btn-outline-danger" style="margin-top: 10%" name="delete">Supprimer le fichier</button>
+                        <input type="text" style="display: none" visibility="hidden" value="' . $elements[8] . '" name="file_name">
+                        <button type="submit" class="btn btn-outline-danger" style="margin-top: 10%" name="delete" onclick="return confirm(`Êtes-vous sûr de vouloir supprimer ce fichier ?`); return false;">Supprimer le fichier</button>
                     </form>
                   </div>
                 </div>
@@ -88,6 +89,7 @@ else { echo '<a class="nav-link" href="./login.php" id="se_connecter">Se connect
                     <div>
                         <?php if(isset($_GET['error']) && ($_GET['error'] == ('Désolé, ce fichier existe déjà.' || 'Désolé, le fichier est trop lourd.' || 'Désolé, seuls les fichiers PDF et JPG sont autorisés.' || "Désolé, le fichier n'a pas pû être importé." || "Désolé, il y a eu une erreur lors de l'importation de votre fichier."))) echo "<p class='error'>" . $_GET['error'] . "</p>"; ?>
                         <?php if(isset($_GET['success']) && ($_GET['success'] == ("Le fichier a été importé avec succès."))) echo "<p class='success'>" . $_GET['success'] . "</p>"; ?>
+                        <?php if(isset($_GET['delete']) && ($_GET['delete'] == ("Le fichier a bien été supprimé."))) echo "<p class='delete'>" . $_GET['delete'] . "</p>"; ?>
                     </div>
             </form>
             </li>
