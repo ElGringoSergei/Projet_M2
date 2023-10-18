@@ -10,7 +10,7 @@ CREATE TABLE test_website_db.accounts (
 	surname varchar(50) NOT NULL,
 	password varchar(128) NOT NULL,
 	PRIMARY KEY (id)
-) Engine=InnoDB;
+);
 
 CREATE TABLE test_website_db.attempts (
 	id int NOT NULL AUTO_INCREMENT,
@@ -18,4 +18,4 @@ CREATE TABLE test_website_db.attempts (
 	value int(11),
 	last_time int(128),
 	PRIMARY KEY(id)
-) Engine=InnoDB;
+);
