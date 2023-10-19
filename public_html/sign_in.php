@@ -60,18 +60,21 @@
                 <input type="text" class="form-control" id="username" name="username">
                 <label for="exampleInputEmail1" class="form-label bold">Adresse mail</label>
                 <input type="email" class="form-control" id="Email1" aria-describedby="emailHelp" name="Email1">
-                <div id="emailHelp" class="form-text">Nous ne divulgerons pas votre adresse mail.</div>
+                <div id="emailHelp" class="form-text" style="margin-left: 0.2rem;">Nous ne divulgerons pas votre adresse mail.</div>
             </div>
             <div class="mb-3">
                 <label for="exampleInputPassword1" class="form-label bold">Mot de passe</label>
                 <input type="password" class="form-control" id="Password1" name="Password1" oninput="updateStrength()">
+                <div class="form-text" style="margin-left: 0.2rem;">Un mot de passe moyen ou fort est exigé</div>
                 <label for="Password1" id="strength-label" class='error' style="background-color: white; border-radius: 0.2rem; padding-left: 0.5rem; padding-right: 0.5rem; margin-left: 0.2rem; margin-top: 0.2rem;">Très faible</label>
+                
             </div>
             <div class="mb-3">
                 <label for="Password2label" class="form-label bold">Confirmer le mot de passe</label>
                 <input type="password" class="form-control" id="Password2" name="Password2" oninput="checkBothPasswords()">
                 <label for="Password2" id="check-label" style="display: none; margin-top: 0.2rem;"></label>
             </div>
+            
             <button type="submit" id="btn_sign_up" class="btn btn-primary" name="submit-create" disabled>Valider</button>
             <button type="button" id="login-page" class="btn btn-outline-primary" onclick="document.location.href='./login.php';">Retourner a la page de connexion</button>
         </form>

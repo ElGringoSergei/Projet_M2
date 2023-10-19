@@ -57,7 +57,7 @@
 
 					$stmt->close();
 					$conn1->close();
-					shell_exec('mkdir /var/www/html/uploads/' . $uuname);
+					shell_exec('mkdir /var/www/html/uploads/' . $uuname . '/');
     					header("Location: ../login.php?success=Votre compte a bien été créé");
     				}
     			}
