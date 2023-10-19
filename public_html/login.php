@@ -86,10 +86,18 @@
             <div class="mb-3"><label for="exampleInputPassword1" class="form-label">Mot de passe</label>
                 <input type="password" class="form-control" name="password-connexion" id="password-connexion">
             </div>
-	    <button type="submit" class="btn btn-primary" name="submit" <?php if (($_SESSION['block'] + 30) > time()) { echo 'disabled'; }?>>Se connecter</button>
+	    <button type="submit" class="btn btn-primary" name="submit" <?php if(isset($_SESSION['block'])) { if (($_SESSION['block'] + 30) > time()) { echo 'disabled'; } };?>>Se connecter</button>
 	    <button type="button" id="new-account" class="btn btn-outline-primary" onclick="document.location.href='./sign_in.php';">Créer un compte</button>
-	    <?php if ($_SESSION['counter'] == 5) { echo '<p class="error">Veuillez reessyer dans 30 secondes</p>'; } 
-	    else if ($_SESSION['counter'] > 0) { echo "<p class='error'>Il vous reste " . (5 - $_SESSION['counter']) . " tentatives</p>"; }?>
+	    <?php 
+        if(isset($_SESSION['counter'])) {
+            if ($_SESSION['counter'] == 5) { 
+                echo '<p class="error">Veuillez reessyer dans 30 secondes</p>'; 
+            }
+	        else if ($_SESSION['counter'] > 0) { 
+                echo "<p class='error'>Il vous reste " . (5 - $_SESSION['counter']) . " tentatives</p>"; 
+            }
+        };
+            ?>
         </form>
     </div>
 </body>

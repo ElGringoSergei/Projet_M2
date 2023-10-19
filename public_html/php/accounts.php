@@ -6,6 +6,7 @@
   session_start();
   
   $s_name = session_name();
+  $_SESSION['past_u_co'] = '';
 
 
   if(isset($_POST['submit']))
@@ -83,8 +84,9 @@
     } else {
     	$_SESSION['block'] = time();
 	$_SESSION['counter'] = 0;
+  $current_time = time();
 	$sql = $con->prepare("UPDATE attempts SET value=0, last_time=? WHERE uname=?");
-	$sql->bind_param("ss", time(), $u_co);
+	$sql->bind_param("ss", $current_time, $u_co);
 	$sql->execute();
 	$sql->close();
 	$con->close();
