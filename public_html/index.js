@@ -222,5 +222,6 @@ function checkPasswordStrength(password) {
     }
     
   }
+
   
 
