@@ -223,5 +223,13 @@ function checkPasswordStrength(password) {
     
   }
 
+  function checkBlankSpace() {
+    const uname_field = document.getElementById('username').value;
+    if (uname_field.indexOf(' ') > -1) {
+        alert("Les espaces ne sont pas autorisées dans le nom d'utilisateur");
+        let texttorep = uname_field.replace(/\s/,'');
+        document.getElementById('username').value = texttorep;
+    }
+  }
   
 
