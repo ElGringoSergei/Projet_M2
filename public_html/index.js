@@ -199,16 +199,23 @@ function checkPasswordStrength(password) {
     const password1 = document.getElementById('Password1');
     const password2 = document.getElementById('Password2');
     const label = document.getElementById('check-label');
-    if (password1.value != password2.value) {
-        label.textContent = "Les mots de passe ne correspondent pas";
-        label.style.display = "inline";
-        label.className = "error";
-    } else {
-        label.textContent = "Les mots de passe correspondent";
-        label.style.display = "inline";
-        label.className = "success";
-    }
     if (password2 == '') {
         label.style.display = "none";
+        return false;
+    } else {
+        if (password1.value != password2.value) {
+            label.textContent = "Les mots de passe ne correspondent pas";
+            label.style.display = "inline";
+            label.className = "error";
+            return false;
+        } else {
+            label.textContent = "Les mots de passe correspondent";
+            label.style.display = "inline";
+            label.className = "success";
+            return true;
+        }
     }
+    
   }
+  
+  
