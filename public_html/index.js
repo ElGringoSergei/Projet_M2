@@ -155,6 +155,8 @@ file.onchange = function(e) {
     }
 };
 
+var state_btn = "bad";
+
 function checkPasswordStrength(password) {
     // Define the criteria for a strong password
     const lengthRegex = /.{8,}/; // At least 8 characters
@@ -170,6 +172,8 @@ function checkPasswordStrength(password) {
     if (uppercaseRegex.test(password)) score++;
     if (numberRegex.test(password)) score++;
     if (specialCharRegex.test(password)) score++;
+
+    if (score >=3) state_btn = "ok";
 
     // Determine the password strength based on the score
     if (score === 5) return 'Fort';
@@ -199,23 +203,24 @@ function checkPasswordStrength(password) {
     const password1 = document.getElementById('Password1');
     const password2 = document.getElementById('Password2');
     const label = document.getElementById('check-label');
+    const valid_btn = document.getElementById('btn_sign_up');
     if (password2 == '') {
         label.style.display = "none";
-        return false;
     } else {
         if (password1.value != password2.value) {
             label.textContent = "Les mots de passe ne correspondent pas";
             label.style.display = "inline";
             label.className = "error";
-            return false;
         } else {
             label.textContent = "Les mots de passe correspondent";
             label.style.display = "inline";
             label.className = "success";
-            return true;
+            if (state_btn == "ok") {
+                valid_btn.removeAttribute("disabled");
+            }
         }
     }
     
   }
   
-  
+
