@@ -1,6 +1,6 @@
 <?php
     session_start();
-    $files = json_encode(shell_exec('ls -lh /var/www/html/uploads'));
+    $files = json_encode(shell_exec('ls -lh /var/www/html/uploads/' . $_SESSION['username']));
     $arr_files = str_replace('"', '', explode('\n', $files));
     
 
