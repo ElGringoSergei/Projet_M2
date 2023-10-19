@@ -72,7 +72,7 @@
                 <input type="password" class="form-control" id="Password2" name="Password2" oninput="checkBothPasswords()">
                 <label for="Password2" id="check-label" style="display: none; margin-top: 0.2rem;"></label>
             </div>
-            <button type="submit" class="btn btn-primary" name="submit-create" disabled>Valider</button>
+            <button type="submit" class="btn btn-primary" name="submit-create">Valider</button>
             <button type="button" id="login-page" class="btn btn-outline-primary" onclick="document.location.href='./login.php';">Retourner a la page de connexion</button>
         </form>
     </div>
