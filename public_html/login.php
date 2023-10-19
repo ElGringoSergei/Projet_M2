@@ -72,7 +72,7 @@
          <form class="forms-perso" method="post" id="connexion" action="./php/accounts.php">
         <div>
         <p class="success"><?php if(isset($_GET["success"]) && ($_GET["success"] == "Votre compte a bien été créé")) echo $_GET["success"];?></p>
-	<p class="error"><?php if(isset($_GET["error"]) && ($_GET["error"] == "Vous n'avez pas rentré d'identifiant" || $_GET["error"] == "Vous n'avez pas rentré de mot de passe" || $_GET["error"] == "Cette combinaison identifiant/mot de passe n'existe pas" || $_GET["error"] == "Session expirée")) echo $_GET["error"];?></p>
+	<p class="error"><?php if(isset($_GET["error"]) && ($_GET["error"] == "Vous n'avez pas rentré d'identifiant" || $_GET["error"] == "Vous n'avez pas rentré de mot de passe" || $_GET["error"] == "Cette combinaison identifiant/mot de passe n'existe pas" || $_GET["error"] == "Session expirée" || $_GET["error"] == "Le compte a bien été supprimé")) echo $_GET["error"];?></p>
 	</div>
             <div class="mb-3"><label for="exampleInputEmail1" class="form-label bold">Identifiant de connexion</label>
                 <input type="text" class="form-control" id="uname-connexion" name="uname-connexion" aria-describedby="emailHelp">
