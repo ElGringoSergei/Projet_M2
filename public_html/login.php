@@ -25,7 +25,6 @@
     .forms-perso {
         max-width: 400px; /* Largeur maximale du formulaire */
         margin: 0 auto; /* Centrer le formulaire horizontalement */
-        background-color: #fff; /* Couleur de fond du formulaire */
         padding: 20px; /* Espacement intérieur du formulaire */
         border-radius: 10px; /* Coins arrondis du formulaire */
         box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Ombre légère */
@@ -65,11 +64,6 @@
                         <a class="nav-link active" href="#" id="se_connecter">Se connecter</a>
                     </li>
                 </ul>
-                <form class="d-flex" role="search" id="search-bar" method="get" action="./php/searchbar.php">
-                    <input class="form-control me-2" type="search" name="search" placeholder="Votre recherche" id="search"
-                        aria-label="Search">
-                    <button class="btn btn-outline-success" type="submit" name="submit-search">Rechercher</button>
-                </form>
             </div>
         </div>
     </nav>
@@ -80,10 +74,10 @@
         <p class="success"><?php if(isset($_GET["success"]) && ($_GET["success"] == "Votre compte a bien été créé")) echo $_GET["success"];?></p>
 	<p class="error"><?php if(isset($_GET["error"]) && ($_GET["error"] == "Vous n'avez pas rentré d'identifiant" || $_GET["error"] == "Vous n'avez pas rentré de mot de passe" || $_GET["error"] == "Cette combinaison identifiant/mot de passe n'existe pas" || $_GET["error"] == "Session expirée")) echo $_GET["error"];?></p>
 	</div>
-            <div class="mb-3"><label for="exampleInputEmail1" class="form-label">Identifiant de connexion</label>
+            <div class="mb-3"><label for="exampleInputEmail1" class="form-label bold">Identifiant de connexion</label>
                 <input type="text" class="form-control" id="uname-connexion" name="uname-connexion" aria-describedby="emailHelp">
             </div>
-            <div class="mb-3"><label for="exampleInputPassword1" class="form-label">Mot de passe</label>
+            <div class="mb-3"><label for="exampleInputPassword1" class="form-label bold">Mot de passe</label>
                 <input type="password" class="form-control" name="password-connexion" id="password-connexion">
             </div>
 	    <button type="submit" class="btn btn-primary" name="submit" <?php if(isset($_SESSION['block'])) { if (($_SESSION['block'] + 30) > time()) { echo 'disabled'; } };?>>Se connecter</button>

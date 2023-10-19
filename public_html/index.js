@@ -174,7 +174,7 @@ function checkPasswordStrength(password) {
     // Determine the password strength based on the score
     if (score === 5) return 'Fort';
     if (score >= 3) return 'Moyen';
-    if (score >= 1) return 'Faible';
+    if (score >= 2) return 'Faible';
     return 'Très faible';
   }
 
@@ -186,10 +186,29 @@ function checkPasswordStrength(password) {
     const strength = checkPasswordStrength(password);
     strengthLabel.textContent = `${strength}`;
     if (strength == 'Très faible' || strength == 'Faible') {
-        strengthLabel.className = 'error btn';
+        strengthLabel.className = 'error';
     } else if (strength == 'Moyen') {
-        strengthLabel.className = 'delete btn';
+        strengthLabel.className = 'delete';
     } else {
-        strengthLabel.className = 'success btn';
+        strengthLabel.className = 'success';
+    }
+  }
+
+
+  function checkBothPasswords() {
+    const password1 = document.getElementById('Password1');
+    const password2 = document.getElementById('Password2');
+    const label = document.getElementById('check-label');
+    if (password1.value != password2.value) {
+        label.textContent = "Les mots de passe ne correspondent pas";
+        label.style.display = "inline";
+        label.className = "error";
+    } else {
+        label.textContent = "Les mots de passe correspondent";
+        label.style.display = "inline";
+        label.className = "success";
+    }
+    if (password2 == '') {
+        label.style.display = "none";
     }
   }

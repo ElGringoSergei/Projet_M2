@@ -34,18 +34,13 @@
                         <a class="nav-link active" href="#" id="se_connecter">Se connecter</a>
                     </li>
                 </ul>
-                <form class="d-flex" role="search" id="search-bar" method="get" action="./php/searchbar.php">
-                    <input class="form-control me-2" type="search" placeholder="Votre recherche" id="search" name="search"
-                        aria-label="Search">
-                    <button class="btn btn-outline-success" type="submit" name="submit-search"
-                        >Rechercher</button>
-                </form>
             </div>
         </div>
     </nav>
 
     <div id="content">
         <form class="forms-perso" action="./php/sign_in.php" method="post">
+            <h2>Inscription</h2>
             <div class="mb-3">
             <div>
 			<p class="error"><?php if(isset($_GET["error"]) && ($_GET["error"] == "Vous n'avez pas rempli tous les champs" || $_GET["error"] == "Les mots de passes ne correspondent pas" || $_GET["error"] == "Vous possédez déjà un compte avec ces coordonnées" || $_GET["error"] == "Vous n'avez pas rempli tous les champs")) echo $_GET["error"];?></p>
@@ -53,28 +48,29 @@
 		<div id="grid-account">
 		    
                     <div>
-                        <label for="exampleInputName" class="form-label">Prénom</label>
+                        <label for="exampleInputName" class="form-label bold">Prénom</label>
                         <input type="text" class="form-control" id="account-name" name="account-name">
                     </div>
                     <div id="flex-item">
-                        <label for="exampleInputSurame" class="form-label">Nom</label>
+                        <label for="exampleInputSurame" class="form-label bold">Nom</label>
                         <input type="text" class="form-control" id="account-surname" name="account-surname">
                     </div>
                 </div>
-                <label for="username" class="form-label">Identifiant de connexion</label>
+                <label for="username" class="form-label bold">Identifiant de connexion</label>
                 <input type="text" class="form-control" id="username" name="username">
-                <label for="exampleInputEmail1" class="form-label">Adresse mail</label>
+                <label for="exampleInputEmail1" class="form-label bold">Adresse mail</label>
                 <input type="email" class="form-control" id="Email1" aria-describedby="emailHelp" name="Email1">
                 <div id="emailHelp" class="form-text">Nous ne divulgerons pas votre adresse mail.</div>
             </div>
             <div class="mb-3">
-                <label for="exampleInputPassword1" class="form-label">Mot de passe</label>
+                <label for="exampleInputPassword1" class="form-label bold">Mot de passe</label>
                 <input type="password" class="form-control" id="Password1" name="Password1" oninput="updateStrength()">
-                <label for="Password1" id="strength-label" class='error btn' style="background-color: white;">Très faible</label>
+                <label for="Password1" id="strength-label" class='error' style="background-color: white; border-radius: 0.2rem; padding-left: 0.5rem; padding-right: 0.5rem; margin-left: 0.2rem; margin-top: 0.2rem;">Très faible</label>
             </div>
             <div class="mb-3">
-                <label for="Password2label" class="form-label">Confirmer le mot de passe</label>
-                <input type="password" class="form-control" id="Password2" name="Password2">
+                <label for="Password2label" class="form-label bold">Confirmer le mot de passe</label>
+                <input type="password" class="form-control" id="Password2" name="Password2" oninput="checkBothPasswords()">
+                <label for="Password2" id="check-label" style="display: none; margin-top: 0.2rem;"></label>
             </div>
             <button type="submit" class="btn btn-primary" name="submit-create">Valider</button>
             <button type="button" id="login-page" class="btn btn-outline-primary" onclick="document.location.href='./login.php';">Retourner a la page de connexion</button>

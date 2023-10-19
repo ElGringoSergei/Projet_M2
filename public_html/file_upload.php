@@ -39,10 +39,6 @@
 else { echo '<a class="nav-link" href="./login.php" id="se_connecter">Se connecter</a>';}?>
                     </li>
                 </ul>
-                <form class="d-flex" role="search" id="search-bar" method="get" action="./php/searchbar.php">
-                    <input class="form-control me-2" type="search" name="search" placeholder="Votre recherche" id="search" aria-label="Search">
-                    <button class="btn btn-outline-success" type="submit" name="submit-search">Rechercher</button>
-                </form>
             </div>
         </div>
     </nav>

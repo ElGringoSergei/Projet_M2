@@ -66,11 +66,6 @@
                     }?>
                     </li>
                 </ul>
-                <form class="d-flex" role="search" id="search-bar" method="get" action="./php/searchbar.php">
-                    <input class="form-control me-2" type="search" name="search" placeholder="Votre recherche" id="search"
-                        aria-label="Search">
-                    <button class="btn btn-outline-success" type="submit" name="submit-search">Rechercher</button>
-                </form>
             </div>
         </div>
     </nav>
@@ -80,7 +75,7 @@
 	$_SESSION['expire'] = time() + $_SESSION['timeout'];
 	echo '
 	</div>
-    <ul class="list-group forms-perso1" style="text-align: center;">
+    <ul class="list-group forms-perso" style="text-align: center; margin-left: 30%; margin-right: 30%;">
         <li class="list-group-item">
             <div class="mb-2" style="font-weight: bold; text-align: center;">Identifiant :</div>
             ' . $username . '
@@ -99,9 +94,9 @@
 	</li>
     </ul>
     <form method="post" action="./php/disconnect.php">    
-	<button type="submit" style="text-align: center; margin-left: 30%; margin-top: 2%;" class="btn btn-outline-danger" name="disconnect">Se déconnecter</button>
-	<button type="submit" style="margin-left: 1%; margin-top: 2%;" class="btn btn-outline-primary" name="reserver">Réserver des ressources</button>
-    <button type="submit" style="margin-left: 1%; margin-top: 2%;" class="btn btn-outline-primary" name="upload">Importer des fichiers</button>
+	<button type="submit" style="text-align: center; margin-left: 30%; margin-top: 1%;" class="btn btn-outline-danger" name="disconnect">Se déconnecter</button>
+	<button type="submit" style="margin-left: 1%; margin-top: 1%;" class="btn btn-outline-primary" name="reserver">Réserver des ressources</button>
+    <button type="submit" style="margin-left: 1%; margin-top: 1%;" class="btn btn-outline-primary" name="upload">Importer des fichiers</button>
 
     </form>';
     }
