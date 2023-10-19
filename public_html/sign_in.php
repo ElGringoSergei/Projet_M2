@@ -69,7 +69,8 @@
             </div>
             <div class="mb-3">
                 <label for="exampleInputPassword1" class="form-label">Mot de passe</label>
-                <input type="password" class="form-control" id="Password1" name="Password1">
+                <input type="password" class="form-control" id="Password1" name="Password1" oninput="updateStrength()">
+                <label for="Password1" id="strength-label" class='error btn' style="background-color: white;">Très faible</label>
             </div>
             <div class="mb-3">
                 <label for="Password2label" class="form-label">Confirmer le mot de passe</label>

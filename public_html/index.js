@@ -155,4 +155,41 @@ file.onchange = function(e) {
     }
 };
 
+function checkPasswordStrength(password) {
+    // Define the criteria for a strong password
+    const lengthRegex = /.{8,}/; // At least 8 characters
+    const lowercaseRegex = /[a-z]/; // At least one lowercase letter
+    const uppercaseRegex = /[A-Z]/; // At least one uppercase letter
+    const numberRegex = /\d/; // At least one number
+    const specialCharRegex = /[\W_]/; // At least one special character
 
+    // Check each criteria and assign a score
+    let score = 0;
+    if (lengthRegex.test(password)) score++;
+    if (lowercaseRegex.test(password)) score++;
+    if (uppercaseRegex.test(password)) score++;
+    if (numberRegex.test(password)) score++;
+    if (specialCharRegex.test(password)) score++;
+
+    // Determine the password strength based on the score
+    if (score === 5) return 'Fort';
+    if (score >= 3) return 'Moyen';
+    if (score >= 1) return 'Faible';
+    return 'Très faible';
+  }
+
+  function updateStrength() {
+    const passwordInput = document.getElementById('Password1');
+    const strengthLabel = document.getElementById('strength-label');
+
+    const password = passwordInput.value;
+    const strength = checkPasswordStrength(password);
+    strengthLabel.textContent = `${strength}`;
+    if (strength == 'Très faible' || strength == 'Faible') {
+        strengthLabel.className = 'error btn';
+    } else if (strength == 'Moyen') {
+        strengthLabel.className = 'delete btn';
+    } else {
+        strengthLabel.className = 'success btn';
+    }
+  }
