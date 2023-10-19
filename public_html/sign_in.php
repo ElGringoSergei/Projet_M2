@@ -57,7 +57,7 @@
                     </div>
                 </div>
                 <label for="username" class="form-label bold">Identifiant de connexion</label>
-                <input type="text" class="form-control" id="username" name="username" oninput="checkBlankSpace()">
+                <input type="text" pattern="[a-zA-Z][0-9]*" class="form-control" id="username" name="username" oninput="checkBlankSpace()">
                 <label for="exampleInputEmail1" class="form-label bold">Adresse mail</label>
                 <input type="email" class="form-control" id="Email1" aria-describedby="emailHelp" name="Email1">
                 <div id="emailHelp" class="form-text" style="margin-left: 0.2rem;">Nous ne divulgerons pas votre adresse mail.</div>
