@@ -6,7 +6,10 @@
   session_start();
   
   $s_name = session_name();
-  $_SESSION['past_u_co'] = '';
+  if(isset($_SESSION['past_u_co'])) {
+  } else {
+    $_SESSION['past_u_co'] = '';
+  }
 
 
   if(isset($_POST['submit']))
@@ -53,7 +56,6 @@
   $stmt->bind_param("ss", $u_co, $p_co);
   $stmt->execute();
   $result = $stmt->get_result();
-  $stmt->fetch();
   $stmt->close();
 
 
@@ -105,7 +107,6 @@
 		$req->bind_param("s", $u_co);
 		$req->execute();
 		$res_att = $req->get_result();
-		$req->fetch();
 		$req->close();
 		if (mysqli_num_rows($res_att) == 1) {
 			$row_att = $res_att->fetch_assoc();

@@ -33,7 +33,6 @@
 
     				$sql->execute();
     				$result = $sql->get_result();
-    				$sql->fetch();
     				$sql->close();
     				$conn->close();
 
