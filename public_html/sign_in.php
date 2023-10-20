@@ -58,9 +58,10 @@
                 </div>
                 <label for="username" class="form-label bold">Identifiant de connexion</label>
                 <input type="text" pattern="[a-zA-Z0-9]*" class="form-control" id="username" name="username" oninput="checkBlankSpace()">
+                <label for="username" class="form-text">Les espaces et les caractères spéciaux ne sont pas autorisés</label><br>
                 <label for="exampleInputEmail1" class="form-label bold">Adresse mail</label>
                 <input type="email" class="form-control" id="Email1" aria-describedby="emailHelp" name="Email1">
-                <div id="emailHelp" class="form-text" style="margin-left: 0.2rem;">Nous ne divulgerons pas votre adresse mail.</div>
+                <div id="emailHelp" class="form-text" style="margin-left: 0.2rem;">Nous ne divulgerons pas votre adresse mail</div>
             </div>
             <div class="mb-3">
                 <label for="exampleInputPassword1" class="form-label bold">Mot de passe</label>
