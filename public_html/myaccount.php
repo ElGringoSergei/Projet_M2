@@ -1,5 +1,9 @@
 <?php
     session_start();
+
+    if(!(isset($_SESSION['id']))) {
+        header("Location: login.php");
+    }
     
     $s_name = session_name();
     if(isset($_GET['id'])) {
