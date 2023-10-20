@@ -233,3 +233,15 @@ function checkPasswordStrength(password) {
   }
   
 
+function showPassword() {
+    const pass1 = document.getElementById('Password1');
+    const pass2 = document.getElementById('Password2');
+
+    if (pass1.type == 'password') {
+        pass1.type = 'text';
+        pass2.type = 'text';
+    } else {
+        pass1.type = 'password';
+        pass2.type = 'password';
+    }
+}

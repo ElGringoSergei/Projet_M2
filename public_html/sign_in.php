@@ -59,7 +59,7 @@ session_start();
             <div class="mb-3">
                 <label for="exampleInputPassword1" class="form-label bold">Mot de passe</label>
                 <input type="password" class="form-control" id="Password1" name="Password1" oninput="updateStrength()" placeholder="Utilisez des majuscules, des minuscules, des chiffres et des caractères spéciaux pour plus de sécurité">
-                <div class="form-text" style="margin-left: 0.2rem;">Un mot de passe moyen ou fort est exigé</div>
+                <div class="form-text d-flex justify-content-between"><div class="p-2">Un mot de passe moyen ou fort est exigé</div><div class="p-2"><input type="checkbox" onclick="showPassword()"><text style="margin-left: 0.5rem; margin-bottom: 0.2rem;">Afficher le mot de passe</text></div></div>
                 <label for="Password1" id="strength-label" class='error' style="background-color: white; border-radius: 0.2rem; padding-left: 0.5rem; padding-right: 0.5rem; margin-left: 0.2rem; margin-top: 0.2rem;">Très faible</label>
             </div>
             <div class="mb-3">
