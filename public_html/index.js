@@ -245,3 +245,13 @@ function showPassword() {
         pass2.type = 'password';
     }
 }
+
+function showPasswordCo() {
+    const pass_co = document.getElementById('password-connexion');
+
+    if (pass_co.type == 'password') {
+        pass_co.type = 'text';
+    } else {
+        pass_co.type = 'password';
+    }
+}

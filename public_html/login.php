@@ -89,6 +89,7 @@ session_start();
             <div class="mb-3">
                 <label for="exampleInputPassword1" class="form-label bold">Mot de passe</label>
                 <input type="password" class="form-control" name="password-connexion" id="password-connexion">
+                <label for="password-connexion" class="form-text" style="margin-left: 0.2rem"><input type="checkbox" onclick="showPasswordCo()"><text style="margin-left: 0.4rem;">Afficher le mot de passe</text></label>
             </div>
             <button type="submit" class="btn btn-primary" name="submit" <?php if (isset($_SESSION['block'])) {if (($_SESSION['block'] + 30) > time()) {echo 'disabled';}}; ?>>Se connecter</button>
             <button type="button" id="new-account" class="btn btn-outline-primary" onclick="document.location.href='./sign_in.php';">Créer un compte</button>
