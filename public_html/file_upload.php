@@ -1,5 +1,8 @@
 <?php
     session_start();
+    if(!(isset($_SESSION['id']))) {
+        header("Location: login.php");
+    }
     $files = json_encode(shell_exec('ls -lh /var/www/html/uploads/' . $_SESSION['username']));
     $arr_files = str_replace('"', '', explode('\n', $files));
     
