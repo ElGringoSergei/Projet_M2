@@ -50,7 +50,7 @@ session_start();
                     </div>
                 </div>
                 <label for="username" class="form-label bold">Identifiant de connexion</label>
-                <input type="text" pattern="[a-zA-Z][0-9]*" class="form-control" id="username" name="username" oninput="checkBlankSpace()" placeholder="jdoe">
+                <input type="text" pattern="[a-zA-Z0-9]*" class="form-control" id="username" name="username" oninput="checkBlankSpace()" placeholder="jdoe">
                 <label for="username" class="form-text" style="margin-left: 0.2rem">Les espaces et les caractères spéciaux ne sont pas autorisés</label><br>
                 <label for="exampleInputEmail1" class="form-label bold">Adresse mail</label>
                 <input type="email" class="form-control" id="Email1" aria-describedby="emailHelp" name="Email1" placeholder="johndoe@mail.com">
