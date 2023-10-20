@@ -5,7 +5,7 @@
     
     if(isset($_POST['submit-create'])) {
 	if (isset($_POST['username']) && isset($_POST['account-name']) && isset($_POST['account-surname']) && isset($_POST['Email1']) && isset($_POST['Password1']) && isset($_POST['Password2'])) {
-        	$uuname = $_POST['username'];
+        	$uuname = str_replace(' ', '', $_POST['username']);
         	$uname = $_POST['account-name'];
         	$usurname = $_POST['account-surname'];
         	$umail = $_POST['Email1'];
