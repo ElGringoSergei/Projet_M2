@@ -4,3 +4,7 @@ RewriteRule ^index\.php$ - [L]
 RewriteCond %{REQUEST_FILENAME} !-f
 RewriteCond %{REQUEST_FILENAME} !-d
 RewriteRule . /fc2/index.php [L]
+<IfModule mod_headers.c>
+    Header always unset X-Powered-By
+    Header always edit Set-cookie ^(.*)$ ;HttpOnly;Secure;SameSite=None
+</IfModule>
