@@ -1,5 +1,10 @@
 <?php
+ini_set("session.cookie_httponly", True);
+ini_set("session.cookie_secure", True);
+ini_set("session.cookie_samesite", "Strict");
 session_start();
+$token = bin2hex(random_bytes(16));
+$_SESSION['csrf'] = $token;
 ?>
 <!DOCTYPE html>
 <html lang="en-US">
@@ -80,7 +85,7 @@ session_start();
         <form class="forms-perso" method="post" id="connexion" action="./php/accounts.php">
             <div>
                 <p class="success"><?php if (isset($_GET["success"]) && ($_GET["success"] == "Votre compte a bien été créé")) echo $_GET["success"]; ?></p>
-                <p class="error"><?php if (isset($_GET["error"]) && ($_GET["error"] == "Vous n'avez pas rentré d'identifiant" || $_GET["error"] == "Vous n'avez pas rentré de mot de passe" || $_GET["error"] == "Cette combinaison identifiant/mot de passe n'existe pas" || $_GET["error"] == "Session expirée" || $_GET["error"] == "Le compte a bien été supprimé")) echo $_GET["error"]; ?></p>
+                <p class="error"><?php if (isset($_GET["error"]) && ($_GET["error"] == "Vous n'avez pas rentré d'identifiant" || $_GET["error"] == "Vous n'avez pas rentré de mot de passe" || $_GET["error"] == "Cette combinaison identifiant/mot de passe n'existe pas" || $_GET["error"] == "Session expirée" || $_GET["error"] == "Le compte a bien été supprimé" || $_GET["error"] == "CSRF détecté")) echo $_GET["error"]; ?></p>
             </div>
             <div class="mb-3">
                 <label for="exampleInputEmail1" class="form-label bold">Identifiant de connexion</label>
@@ -91,8 +96,9 @@ session_start();
                 <input type="password" class="form-control" name="password-connexion" id="password-connexion">
                 <label for="password-connexion" class="form-text" style="margin-left: 0.2rem"><input type="checkbox" onclick="showPasswordCo()"><text style="margin-left: 0.4rem;">Afficher le mot de passe</text></label>
             </div>
+            <input type="hidden" name="csrf" id="csrf" value="<?php echo $token;?>">
             <button type="submit" class="btn btn-primary" name="submit" <?php if (isset($_SESSION['block'])) {if (($_SESSION['block'] + 30) > time()) {echo 'disabled';}}; ?>>Se connecter</button>
-            <button type="button" id="new-account" class="btn btn-outline-primary" onclick="document.location.href='./sign_in.php';">Créer un compte</button>
+            <button type="button" id="new-account" class="btn btn-outline-primary">Créer un compte</button>
             <?php
             if (isset($_SESSION['counter'])) {
                 if ($_SESSION['counter'] == 5) {

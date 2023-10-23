@@ -1,4 +1,7 @@
 <?php
+ini_set("session.cookie_httponly", True);
+ini_set("session.cookie_secure", True);
+ini_set("session.cookie_samesite", "Strict");
 session_start();
 $target_dir = '../uploads/' . $_SESSION['username'] . '/';
 $rep_arr = array(' ','é','à','è','ç','ê','â','ï','û','ô');

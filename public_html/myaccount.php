@@ -1,4 +1,7 @@
 <?php
+    ini_set("session.cookie_httponly", True);
+    ini_set("session.cookie_secure", True);
+    ini_set("session.cookie_samesite", "Strict");
     session_start();
 
     if(!(isset($_SESSION['id']))) {
@@ -80,6 +83,9 @@
 	echo '
 	</div>
     <ul class="list-group forms-perso" style="text-align: center; margin-left: 30%; margin-right: 30%;">
+    <li class="list-group-item">
+    <h3>Mon compte</h3>
+    </li>
     <li class="list-group-item">
     <div class="mb-2" style="text-align: center;"><text style="font-weight: bold;">Nom :</text> 
     ' . $surname . '

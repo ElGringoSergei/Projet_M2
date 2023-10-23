@@ -1,9 +1,18 @@
 <?php
-
-  include 'config.php';
-  $timeout = 600;
+ini_set("session.cookie_httponly", True);
+ini_set("session.cookie_secure", True);
+ini_set("session.cookie_samesite", "Strict");
+include 'config.php';
+$timeout = 600;
   
-  session_start();
+session_start();
+
+if(!isset($_POST['csrf'])) {
+  header("Location: ../login.php?error=CSRF détecté");
+} else if($_POST['csrf'] != $_SESSION['csrf']) {
+  header("Location: ../login.php?error=CSRF détecté");
+} else {
+
   
   $s_name = session_name();
   if(isset($_SESSION['past_u_co'])) {
@@ -157,7 +166,8 @@
  
 
 
-}
+  }
+} 
 
 
 ?>

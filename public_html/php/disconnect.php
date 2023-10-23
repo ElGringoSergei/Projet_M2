@@ -1,4 +1,7 @@
 <?php
+	ini_set("session.cookie_httponly", True);
+	ini_set("session.cookie_secure", True);
+	ini_set("session.cookie_samesite", "Strict");
     include 'config.php';
 	session_start();
 	if(isset($_POST['disconnect'])) {

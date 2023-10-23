@@ -140,6 +140,13 @@ function search_launched(recherche) {
 	resultat_recherche.innerHTML = recherche;
 }
 
+function redirect_sign_up() {
+    document.location = "./sign_in.php";
+}
+
+const sign_up_btn = document.getElementById('new-account');
+
+sign_up_btn.addEventListener('click', redirect_sign_up);
 
 var file = document.getElementById("inputGroupFile01");
 
@@ -255,3 +262,4 @@ function showPasswordCo() {
         pass_co.type = 'password';
     }
 }
+
