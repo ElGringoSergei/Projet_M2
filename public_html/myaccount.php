@@ -80,22 +80,21 @@
 	echo '
 	</div>
     <ul class="list-group forms-perso" style="text-align: center; margin-left: 30%; margin-right: 30%;">
+    <li class="list-group-item">
+    <div class="mb-2" style="text-align: center;"><text style="font-weight: bold;">Nom :</text> 
+    ' . $surname . '
+    <text style="font-weight: bold;">Prénom :</text> 
+    ' . $name . '</div>
+   
+</li>
         <li class="list-group-item">
-            <div class="mb-2" style="font-weight: bold; text-align: center;">Identifiant :</div>
+            <div class="mb-2" style="text-align: center;"><text style="font-weight: bold">Identifiant :</text>
             ' . $username . '
+            <text style="font-weight: bold;">E-mail :</text>
+            ' . $email . '</div>
+            
         </li>
-        <li class="list-group-item">
-            <div class="mb-2" style="font-weight: bold; text-align: center;">Nom : </div>
-            ' . $surname . '
-        </li>
-        <li class="list-group-item">
-            <div class="mb-2" style="font-weight: bold; text-align: center;">Prénom : </div>
-            ' . $name . '
-        </li>
-        <li class="list-group-item">
-            <div class="mb-2" style="font-weight: bold; text-align: center;">E-mail : </div>
-            ' . $email . '
-	</li>
+       
     </ul>
     <form method="post" action="./php/disconnect.php">    
 	<button type="submit" style="text-align: center; margin-left: 30%; margin-top: 1%;" class="btn btn-outline-danger" name="disconnect">Se déconnecter</button>
