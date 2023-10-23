@@ -3,6 +3,7 @@ ini_set("session.cookie_httponly", True);
 ini_set("session.cookie_secure", True);
 ini_set("session.cookie_samesite", "Strict");
 session_start();
+
 $token = bin2hex(random_bytes(16));
 $_SESSION['csrf'] = $token;
 ?>
