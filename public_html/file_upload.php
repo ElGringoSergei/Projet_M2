@@ -85,7 +85,7 @@ else { echo '<a class="nav-link" href="./login.php" id="se_connecter">Se connect
                   <div class="col">
                     <form action="php/delete_file.php" method="post">
                         <input type="text" style="display: none" visibility="hidden" value="' . $elements[8] . '" name="file_name">
-                        <input type="hidden" name="csrf_del" value="' . echo $token_del . '">
+                        <input type="hidden" name="csrf_del" value="' . $token_del . '">
                         <button type="submit" class="btn btn-outline-danger" style="margin-top: 10%" name="delete" onclick="return confirm(`Êtes-vous sûr de vouloir supprimer ce fichier ?`); return false;">Supprimer le fichier</button>
                     </form>
                   </div>

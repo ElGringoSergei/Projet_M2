@@ -17,7 +17,7 @@ if(!isset($_POST['csrf_del'])) {
     session_unset();
     session_destroy();
     header("Location: ../login.php?error=CSRF détecté");
-  } else if($_POST['csrf'] != $_SESSION['csrf']) {
+  } else if($_POST['csrf_del'] != $_SESSION['csrf_del']) {
     session_unset();
     session_destroy();
     header("Location: ../login.php?error=CSRF détecté");
