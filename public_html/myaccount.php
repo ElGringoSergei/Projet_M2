@@ -4,6 +4,9 @@
     ini_set("session.cookie_samesite", "Strict");
     session_start();
 
+    $token = bin2hex(random_bytes(16));
+    $_SESSION['csrf'] = $token;
+
     if (isset($_SESSION['id'])) {
         if ($_SESSION['expire'] < time()) {
             header("Location: ../login.php?error=Session expirée");
@@ -108,7 +111,8 @@
         </li>
        
     </ul>
-    <form method="post" action="./php/disconnect.php">    
+    <form method="post" action="./php/disconnect.php">
+    <input type="hidden" name="csrf" value="' . $token . '">  
 	<button type="submit" style="text-align: center; margin-left: 30%; margin-top: 1%;" class="btn btn-outline-danger" name="disconnect">Se déconnecter</button>
 	<button type="submit" style="margin-left: 1%; margin-top: 1%;" class="btn btn-outline-primary" name="reserver">Réserver des ressources</button>
     <button type="submit" style="margin-left: 1%; margin-top: 1%;" class="btn btn-outline-primary" name="upload">Importer des fichiers</button>
@@ -117,7 +121,8 @@
     </form>';
     }
     else if(isset($_SESSION['sname']) && $_SESSION['expire'] < time()) {
-      $_SESSION = [];
+      session_unset();
+      session_destroy();
       header("Location: ./login.php?error=Session expirée");
     } else {
 	header("Location: ./login.php?error=Session expirée");
