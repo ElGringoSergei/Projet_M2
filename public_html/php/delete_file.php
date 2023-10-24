@@ -13,9 +13,20 @@ if (isset($_SESSION['id'])) {
     header("Location: ../login.php?error=Session expirée");
 }
 
-if(isset($_POST['delete'])) {
-    $target_dir = "/var/www/html/uploads/" . $_SESSION['username'] . '/' . $_POST['file_name'];
-    shell_exec('rm ' . $target_dir);
-    header("Location: ../file_upload.php?delete=Le fichier a bien été supprimé.");
-};
+if(!isset($_POST['csrf_del'])) {
+    session_unset();
+    session_destroy();
+    header("Location: ../login.php?error=CSRF détecté");
+  } else if($_POST['csrf'] != $_SESSION['csrf']) {
+    session_unset();
+    session_destroy();
+    header("Location: ../login.php?error=CSRF détecté");
+  } else {
+
+    if(isset($_POST['delete'])) {
+        $target_dir = "/var/www/html/uploads/" . $_SESSION['username'] . '/' . $_POST['file_name'];
+        shell_exec('rm ' . $target_dir);
+        header("Location: ../file_upload.php?delete=Le fichier a bien été supprimé.");
+    }
+}
 ?>

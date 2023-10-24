@@ -14,8 +14,11 @@
     }
     $files = json_encode(shell_exec('ls -lh /var/www/html/uploads/' . $_SESSION['username']));
     $arr_files = str_replace('"', '', explode('\n', $files));
-    
 
+    $token_up = bin2hex(random_bytes(16));
+    $token_del = bin2hex(random_bytes(16));
+    $_SESSION['csrf'] = $token_up; 
+    $_SESSION['csrf_del'] = $token_del;
 ?>
 
 <!DOCTYPE html>
@@ -82,6 +85,7 @@ else { echo '<a class="nav-link" href="./login.php" id="se_connecter">Se connect
                   <div class="col">
                     <form action="php/delete_file.php" method="post">
                         <input type="text" style="display: none" visibility="hidden" value="' . $elements[8] . '" name="file_name">
+                        <input type="hidden" name="csrf_del" value="' . echo $token_del . '">
                         <button type="submit" class="btn btn-outline-danger" style="margin-top: 10%" name="delete" onclick="return confirm(`Êtes-vous sûr de vouloir supprimer ce fichier ?`); return false;">Supprimer le fichier</button>
                     </form>
                   </div>
@@ -90,6 +94,7 @@ else { echo '<a class="nav-link" href="./login.php" id="se_connecter">Se connect
             }; ?>
             <li class="list-group-item d-flex justify-content-between align-items-start">
                 <form action="php/upload.php" method="post" enctype="multipart/form-data" style="margin-top: 1%">
+                    <input type="hidden" name="csrf" value="<?php echo $token_up;?>">
                     <div class="input-group mb-3">
                         <button type="submit" class="input-group-text btn btn-outline-primary" for="inputGroupFile01">Importer</button>
                         <input type="file" accept=".pdf, .jpg" class="form-control" name="inputGroupFile01" id="inputGroupFile01">

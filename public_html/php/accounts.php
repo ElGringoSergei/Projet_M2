@@ -3,7 +3,7 @@ ini_set("session.cookie_httponly", True);
 ini_set("session.cookie_secure", True);
 ini_set("session.cookie_samesite", "Strict");
 include 'config.php';
-$timeout = 10;
+$timeout = 600;
   
 session_start();
 
