@@ -3,7 +3,15 @@ ini_set("session.cookie_httponly", True);
 ini_set("session.cookie_secure", True);
 ini_set("session.cookie_samesite", "Strict");
 session_start();
-
+if (isset($_SESSION['id'])) {
+  if ($_SESSION['expire'] < time()) {
+      header("Location: ../login.php?error=Session expirée");
+  } else {
+      $_SESSION['expire'] = time() + $_SESSION['timeout'];
+  }
+} else {
+  header("Location: ../login.php?error=Session expirée");
+}
 $target_dir = '../uploads/' . $_SESSION['username'] . '/';
 $rep_arr = array(' ','é','à','è','ç','ê','â','ï','û','ô');
 $arr_rep = array('_','e','a','e','c','e','a','i','u','o');

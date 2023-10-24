@@ -4,8 +4,14 @@
     ini_set("session.cookie_samesite", "Strict");
     session_start();
 
-    if(!(isset($_SESSION['id']))) {
-        header("Location: login.php");
+    if (isset($_SESSION['id'])) {
+        if ($_SESSION['expire'] < time()) {
+            header("Location: ../login.php?error=Session expirée");
+        } else {
+            $_SESSION['expire'] = time() + $_SESSION['timeout'];
+        }
+    } else {
+        header("Location: ../login.php?error=Session expirée");
     }
     
     $s_name = session_name();

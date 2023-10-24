@@ -3,7 +3,11 @@
     ini_set("session.cookie_secure", True);
     ini_set("session.cookie_samesite", "Strict");
 	session_start();
-    
+    if (isset($_SESSION['id'])) {
+        if ($_SESSION['expire'] >= time()) {
+            $_SESSION['expire'] = time() + $_SESSION['timeout'];
+        }        
+    }
 	#if(isset($_SESSION['sname']) && $_SESSION['expire'] > time()) {
 	#	$_SESSION['expire'] = time() + $_SESSION['timeout'];
 	#} else {
