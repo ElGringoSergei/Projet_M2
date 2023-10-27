@@ -165,14 +165,12 @@ file.onchange = function(e) {
 var state_btn = "bad";
 
 function checkPasswordStrength(password) {
-    // Define the criteria for a strong password
-    const lengthRegex = /.{8,}/; // At least 8 characters
-    const lowercaseRegex = /[a-z]/; // At least one lowercase letter
-    const uppercaseRegex = /[A-Z]/; // At least one uppercase letter
-    const numberRegex = /\d/; // At least one number
-    const specialCharRegex = /[\W_]/; // At least one special character
+    const lengthRegex = /.{8,}/;
+    const lowercaseRegex = /[a-z]/;
+    const uppercaseRegex = /[A-Z]/;
+    const numberRegex = /\d/;
+    const specialCharRegex = /[\W_]/;
 
-    // Check each criteria and assign a score
     let score = 0;
     if (lengthRegex.test(password)) score++;
     if (lowercaseRegex.test(password)) score++;
@@ -182,7 +180,6 @@ function checkPasswordStrength(password) {
 
     if (score >=3) state_btn = "ok";
 
-    // Determine the password strength based on the score
     if (score === 5) return 'Fort';
     if (score >= 3) return 'Moyen';
     if (score >= 2) return 'Faible';
