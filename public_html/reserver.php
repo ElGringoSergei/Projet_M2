@@ -4,7 +4,7 @@ ini_set("session.cookie_secure", True);
 ini_set("session.cookie_samesite", "Strict");
 session_start();
 
-$creneaux = json_decode(file_get_contents("http://localhost:5000/api/creneaux_reserves"));
+$creneaux = file_get_contents("http://localhost:5000/api/creneaux_reserves");
 ?>
 
 <!DOCTYPE html>
@@ -45,7 +45,7 @@ else { echo '<a class="nav-link" href="./login.php" id="se_connecter">Se connect
     </nav>
 
     <div>
-        <?php echo $creneaux; ?>
+        <?php echo json_decode($creneaux); ?>
     </div>
 </body>
 
