@@ -80,15 +80,6 @@ def reserver():
 
     return render_template('reservation_result.html', success=success)
 
-#@app.route('/annuler', methods=['POST'])
-#def annuler():
-#    jour = datetime.strptime(request.form['jour'], '%Y-%m-%d')
-#    heure = request.form['heure']
-
-#    success = ordonnanceur_deux_semaines.annuler_reservation(jour, heure)
-
-#    return render_template('annulation_result.html', success=success)
-
 @app.route('/api/creneaux_reserves', methods=['GET'])
 def api_creneaux_reserves():
     creneaux_reserves = ordonnanceur_deux_semaines.afficher_creneaux_reserves()
@@ -98,6 +89,18 @@ def api_creneaux_reserves():
 def api_creneaux_libres():
     creneaux_libres = ordonnanceur_deux_semaines.afficher_creneaux_disponibles(request.form['jour'])
     return jsonify(creneaux_libres)
+
+@app.route('/api/annuler_reservation', methods=['POST'])
+def api_annuler_reservation():
+    ordonnanceur_deux_semaines.annuler_reservation(request.form['jour'], request.form['heure'])
+
+@app.route('/api/afficher_jours', methods=['GET'])
+def api_afficher_jours():
+    return jsonify(ordonnanceur_deux_semaines.jours)
+
+@app.route('/api/afficher_heures', methods=['GET'])
+def api_afficher_heures():
+    return jsonify(ordonnanceur_deux_semaines.heures_de_travail)
 
 if __name__ == '__main__':
     app.run(host='10.5.0.4', port=5000, debug=True)
