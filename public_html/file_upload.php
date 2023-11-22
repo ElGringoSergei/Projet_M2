@@ -62,7 +62,7 @@ else { echo '<a class="nav-link" href="./login.php" id="se_connecter">Se connect
         <ol class="list-group list-group forms-perso" id="page-accueil">
             <li class="list-group-item d-flex justify-content-between align-items-start">
                 <div class="ms-2 me-auto" id="login-link">
-                    <a href="./login.php" class="fw-bold nav-link nav-pages">Vos fichiers</a>
+                    <span class="fw-bold nav-link nav-pages">Vos fichiers</span>
                     Retrouvez vos fichiers importés ou importez-en de nouveaux.
                 </div>
 
