@@ -25,11 +25,14 @@ class Ordonnanceur:
             if heure in self.creneaux_disponibles[jour] and self.creneaux_disponibles[jour][heure]:
                 self.creneaux_disponibles[jour][heure] = False
                 self.reservations[(jour, heure)] = personne
-                print(f"Créneau réservé par {personne} le {jour} à {heure}.")
+                reponse = "Créneau réservé par " + personne + " le " + jour + " à " + heure + "."
+                return reponse
             else:
-                print(f"Le créneau à {heure} le {jour} n'est pas disponible.")
+                reponse = "Le créneau à " + heure + " le " + jour + " n'est pas disponible."
+                return reponse
         else:
-            print(f"La date {jour} n'est pas incluse dans les jours de l'ordonnanceur.")
+            reponse = "La date " + jour + " n'est pas incluse dans les jours de l'ordonnanceur."
+            return reponse
 
 
     def afficher_creneaux_reserves(self):
@@ -52,7 +55,7 @@ class Ordonnanceur:
 
 
 # Exemple d'utilisation pour deux semaines
-heures_de_travail = ["09:00", "10:00", "11:00", "14:00", "15:00"]
+heures_de_travail = ["08:00", "09:00", "10:00", "11:00", "14:00", "15:00", "16:00", "17:00"]
 ordonnanceur_deux_semaines = Ordonnanceur([], heures_de_travail, jours_a_afficher=14)
 
 # Exemple d'utilisation pour un jour spécifique
@@ -66,11 +69,9 @@ else:
 # Afficher les créneaux réservés
 ordonnanceur_deux_semaines.afficher_creneaux_reserves()
 
-@app.route('/')
-def index():
-    return render_template('index.html', jours=ordonnanceur_deux_semaines.jours)
 
-@app.route('/reserver', methods=['POST'])
+
+@app.route('/api/reserver', methods=['POST'])
 def reserver():
     jour = request.form['jour']
     heure = request.form['heure']
@@ -78,7 +79,7 @@ def reserver():
 
     success = ordonnanceur_deux_semaines.reserver_creneau(jour, heure, personne)
 
-    return render_template('reservation_result.html', success=success)
+    return success
 
 @app.route('/api/creneaux_reserves', methods=['GET'])
 def api_creneaux_reserves():

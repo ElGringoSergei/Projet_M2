@@ -260,3 +260,24 @@ function showPasswordCo() {
     }
 }
 
+
+function afficherPopup(jour, heure) {
+    // Afficher la modal et remplir les informations
+    document.getElementById('creneauReserve').innerHTML = jour + ' à ' + heure;
+    document.getElementById('popup').style.display = 'block';
+  }
+  
+  function fermerPopup() {
+    // Fermer la modal
+    document.getElementById('popup').style.display = 'none';
+  }
+  
+  function validerReservation() {
+    // Ajoutez ici la logique pour valider la réservation (peut-être une requête AJAX, etc.)
+    alert('Réservation confirmée !');
+  
+    // Fermer la modal après confirmation
+    fermerPopup();
+  }
+  
+

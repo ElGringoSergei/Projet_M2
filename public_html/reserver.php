@@ -63,7 +63,7 @@ else { echo '<a class="nav-link" href="./login.php" id="se_connecter">Se connect
             $none = 0;
             for ($i = 0; $i < sizeof($creneaux_reserves); $i++) {
                 if ($creneaux_reserves[$i][2] == $_SESSION['username']) {
-                    echo '<li class="list-group-item d-flex justify-content-between align-items-start"><div class="row">
+                    echo '<li class="list-group-item d-flex justify-content-between"><div class="row">
                     <div class="col">
                       <p style="font-weight: bold">Date du créneaux</p><p>' . $creneaux_reserves[$i][0] .
                     '</p></div>
@@ -78,15 +78,13 @@ else { echo '<a class="nav-link" href="./login.php" id="se_connecter">Se connect
                           <input type="hidden" name="csrf_del" value="' . $token_del . '">
                           <button type="submit" class="btn btn-outline-danger" style="margin-top: 10%" name="delete" onclick="return confirm(`Êtes-vous sûr de vouloir supprimer cette réservation ?`); return false;">Supprimer la réservation</button>
                       </form>
-                    </div>
-                  </div>
-                </div></li>';
+                    </div></li>';
                     $none = 1;
                 }
             }
             
             if ($none == 0) {
-                echo '<li class="list-group-item d-flex justify-content-between align-items-start">' . "Vous n'avez aucun créneaux réservé" . "</li>";
+                echo '<li class="list-group-item d-flex justify-content-between">' . "Vous n'avez aucun créneaux réservé" . "</li>";
             }
 
         ?>
@@ -94,7 +92,11 @@ else { echo '<a class="nav-link" href="./login.php" id="se_connecter">Se connect
         
         <?php
         if (isset($_GET['success']) && $_GET['success'] == "La réservation a bien été annulée.") {
-        '<li class="list-group-item d-flex justify-content-between align-items-start success">' . $_GET['success'] . "</li>";
+            echo '<li class="list-group-item d-flex justify-content-between align-items-start delete"><div class="col">' . $_GET['success'] . "</div></li>";
+        }
+        if (isset($_SESSION['message'])) {
+            echo '<li class="list-group-item d-flex justify-content-between align-items-start success"><div class="col">' . $_SESSION['message'] . "</div></li>";
+            unset($_SESSION['message']);
         }
         ?>
     </ol>
@@ -128,10 +130,14 @@ else { echo '<a class="nav-link" href="./login.php" id="se_connecter">Se connect
                 
 
                 for ($m = 0; $m < sizeof($heures); $m++) {
+                    echo '<div class="row">';
+                    echo '<form method="post" action="">';
+                    echo '<input type="hidden" name="jour" value="' . $jours[$j] . '">';
+                    echo '<input type="hidden" name="heure" value="' . $heures[$m] . '">';
                     if (in_array($heures[$m], $heures_libres[$j])) {
-                        echo '<div class="row"><button class="btn btn-outline-secondary" style="font-weight: bold;">' . $heures[$m] . '</button></div>';
+                        echo '<button type="submit" class="btn btn-outline-secondary" id="creneauButton" style="font-weight: bold;">' . $heures[$m] . '</button></form></div>';
                     } else {
-                        echo '<div class="row"><button class="btn btn-outline-secondary" style="font-weight: bold;" disabled>' . $heures[$m] . '</button></div>';
+                        echo '<button type="submit" class="btn btn-outline-secondary" style="font-weight: bold;" disabled>' . $heures[$m] . '</button></form></div>';
                     }
                 }
                 echo "</div>";
@@ -144,6 +150,18 @@ else { echo '<a class="nav-link" href="./login.php" id="se_connecter">Se connect
             </div>
         </li>
     </ol>
+
+    <div id="popup" class="modal" <?php if (isset($_POST['jour'])) { echo 'style="display: block;"'; }?>>
+  <div class="modal-content">
+    <span class="fermer" onclick="fermerPopup()">&times;</span>
+    <p>Voulez-vous vraiment réserver le créneau de <?php echo $_POST['heure'] . " le " . $_POST['jour']?>?</p>
+    <form method="post" action="php/reserver_creneaux.php">
+    <input type="hidden" name="jour" value="<?php echo $_POST['jour'];?>">
+    <input type="hidden" name="heure" value="<?php echo $_POST['heure'];?>">
+    <button type="submit" class="btn btn-outline-secondary" onclick="validerReservation();">Réserver ce créneau</button>
+    </form>
+  </div>
+</div>
 </body>
 
 </html>
