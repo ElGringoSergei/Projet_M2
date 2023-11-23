@@ -4,7 +4,7 @@ from datetime import datetime, timedelta
 app = Flask(__name__)
 
 class Ordonnanceur:
-    def __init__(self, jours, heures_de_travail, jours_a_afficher=14):
+    def __init__(self, jours, heures_de_travail, jours_a_afficher=30):
         self.jours = [(datetime.now() + timedelta(days=i)).strftime('%Y-%m-%d') for i in range(jours_a_afficher)]
         self.heures_de_travail = heures_de_travail
         self.creneaux_disponibles = {jour: {heure: True for heure in heures_de_travail} for jour in self.jours}
@@ -20,19 +20,20 @@ class Ordonnanceur:
         else:
             print(f"La date {jour} n'est pas incluse dans les jours de l'ordonnanceur.")
 
-    def reserver_creneau(self, jour, heure, personne):
-        if jour in self.jours:
-            if heure in self.creneaux_disponibles[jour] and self.creneaux_disponibles[jour][heure]:
-                self.creneaux_disponibles[jour][heure] = False
-                self.reservations[(jour, heure)] = personne
-                reponse = "Créneau réservé par " + personne + " le " + jour + " à " + heure + "."
-                return reponse
-            else:
-                reponse = "Le créneau à " + heure + " le " + jour + " n'est pas disponible."
-                return reponse
-        else:
-            reponse = "La date " + jour + " n'est pas incluse dans les jours de l'ordonnanceur."
+    def reserver_creneau(self, jour, heure, personne, fichier):
+    if jour in self.jours:
+        if heure in self.creneaux_disponibles[jour] and self.creneaux_disponibles[jour][heure]:
+            self.creneaux_disponibles[jour][heure] = False
+            self.reservations[(jour, heure)] = {'personne': personne, 'fichier': fichier}
+            reponse = f"Créneau réservé par {personne} le {jour} à {heure}. Fichier associé : {fichier}."
             return reponse
+        else:
+            reponse = f"Le créneau à {heure} le {jour} n'est pas disponible."
+            return reponse
+    else:
+        reponse = f"La date {jour} n'est pas incluse dans les jours de l'ordonnanceur."
+        return reponse
+
 
 
     def afficher_creneaux_reserves(self):
@@ -56,7 +57,7 @@ class Ordonnanceur:
 
 # Exemple d'utilisation pour deux semaines
 heures_de_travail = ["08:00", "09:00", "10:00", "11:00", "14:00", "15:00", "16:00", "17:00"]
-ordonnanceur_deux_semaines = Ordonnanceur([], heures_de_travail, jours_a_afficher=14)
+ordonnanceur_deux_semaines = Ordonnanceur([], heures_de_travail, jours_a_afficher=30)
 
 # Exemple d'utilisation pour un jour spécifique
 douze_jours = (datetime.now() + timedelta(days=12)).strftime('%Y-%m-%d')
@@ -76,8 +77,9 @@ def reserver():
     jour = request.form['jour']
     heure = request.form['heure']
     personne = request.form['personne']
+    fichier = request.form['nom_fichier']
 
-    success = ordonnanceur_deux_semaines.reserver_creneau(jour, heure, personne)
+    success = ordonnanceur_deux_semaines.reserver_creneau(jour, heure, personne, fichier)
 
     return success
 

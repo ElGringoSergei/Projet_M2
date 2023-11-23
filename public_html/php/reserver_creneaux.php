@@ -23,11 +23,12 @@ if(!isset($_POST['csrf'])) {
     header("Location: ../login.php?error=CSRF détecté");
 } else {
 
-        $postdata = http_build_query(
+        $postdata = http_build_query(       # Modifier pour adapter si le fichier est importé ou selectionné
     array(
         'jour' => $_POST['jour'],
         'heure' => $_POST['heure'],
-        'personne' => $_SESSION['username']
+        'personne' => $_SESSION['username'],
+        'nom_fichier' => $_POST['file_name']
     )
         );
         $options = array('http' =>

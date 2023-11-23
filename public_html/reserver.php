@@ -17,6 +17,8 @@ $_SESSION['csrf_del'] = $token_del;
 $token = bin2hex(random_bytes(16));
 $_SESSION['csrf'] = $token;
 $creneaux_reserves = json_decode(file_get_contents("http://10.5.0.4:5000/api/creneaux_reserves"));
+$files = json_encode(shell_exec('ls -lh /var/www/html/uploads/' . $_SESSION['username']));
+$arr_files = str_replace('"', '', explode('\n', $files));
 ?>
 
 <!DOCTYPE html>
@@ -105,11 +107,11 @@ else { echo '<a class="nav-link" href="./login.php" id="se_connecter">Se connect
     </div>
 
     <ol class="list-group list-group forms-perso2">
-        <li class="list-group-item d-flex justify-content-between align-items-start">
+        <li class="list-group-item justify-content-between align-items-start">
             <div class="ms-2 me-auto" id="login-link"><span class="fw-bold nav-link nav-pages">Créneaux disponibles</span>Retrouvez les créneaux que vous pouvez réserver.</div>
         </li>
-        <li class="list-group-item d-flex justify-content-between align-items-start" style="overflow: hidden;"> 
-            <div class="row" style="padding: 1%; padding-right: 3%;">
+        <li class="list-group-item justify-content-between align-items-start"> 
+            <div class="d-flex flex-row overflow-x-auto" style="padding: 1%; padding-right: 3%;">
             <?php 
             $jours = json_decode(file_get_contents('http://10.5.0.4:5000/api/afficher_jours'));
             $heures = json_decode(file_get_contents('http://10.5.0.4:5000/api/afficher_heures'));
@@ -117,7 +119,7 @@ else { echo '<a class="nav-link" href="./login.php" id="se_connecter">Se connect
             
 
             for ($j = 0; $j < sizeof($jours); $j++) {
-                echo '<div class="col"><p style="font-weight: bold">' . $jours[$j] . "</p>";
+                echo '<div class="col p-2"><p style="font-weight: bold">' . $jours[$j] . "</p>";
                 $postdata = http_build_query(
                     array(
                         'jour' => $jours[$j]
@@ -164,6 +166,18 @@ else { echo '<a class="nav-link" href="./login.php" id="se_connecter">Se connect
     <input type="hidden" name="jour" value="<?php echo $_POST['jour'];?>">
     <input type="hidden" name="heure" value="<?php echo $_POST['heure'];?>">
     <input type="hidden" name="csrf" value="<?php echo $token ?>">
+    <div class="input-group mb-3">
+        <label class="input-group-text" for="inputGroupSelect01">Options</label>
+        <select class="form-select" id="inputGroupSelect01" name="file_name">
+            <option selected>Choisissez un fichier</option>
+        <?php
+        for($i = 1; $i < (sizeof($arr_files) - 1); $i++) {
+                $arr_files[$i] = str_replace(" ", "|", $arr_files[$i]);
+                $elements = str_replace('"', '', explode("|", str_replace('||', '|', $arr_files[$i])));
+                echo '<option value="' . $elements[8] . '">' . $elements[8] . '</option>';
+            }; ?>
+        </select>
+    </div>
     <button type="submit" class="btn btn-outline-secondary" onclick="validerReservation();">Réserver ce créneau</button>
     </form>
   </div>

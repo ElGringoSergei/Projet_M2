@@ -75,12 +75,11 @@ body {
 }
 
 .forms-perso2 {
-    margin-left: 10%;
-    margin-right: 10%;
+    margin-left: 20%;
+    margin-right: 20%;
     margin-top: 5%;
     background-color: lightgrey;
     border-radius: 0.5rem;
-    padding: 0.5%;
 }
 
 .forms-perso3 {
