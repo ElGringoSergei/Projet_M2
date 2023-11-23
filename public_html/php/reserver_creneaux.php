@@ -13,25 +13,37 @@ if (isset($_SESSION['id'])) {
     header("Location: ../login.php?error=Session expirée");
 }
 
-$postdata = http_build_query(
+if(!isset($_POST['csrf'])) {
+    session_unset();
+    session_destroy();
+    header("Location: ../login.php?error=CSRF détecté");
+} else if($_POST['csrf'] != $_SESSION['csrf']) {
+    session_unset();
+    session_destroy();
+    header("Location: ../login.php?error=CSRF détecté");
+} else {
+
+        $postdata = http_build_query(
     array(
         'jour' => $_POST['jour'],
         'heure' => $_POST['heure'],
         'personne' => $_SESSION['username']
     )
-);
-$options = array('http' =>
-    array(
-        'method' => 'POST',
-        'header' => 'Content-type: application/x-www-form-urlencoded',
-        'content' => $postdata
-    )
-);
-$context = stream_context_create($options);
-$response = file_get_contents('http://10.5.0.4:5000/api/reserver', false, $context);
+        );
+        $options = array('http' =>
+            array(
+                'method' => 'POST',
+                'header' => 'Content-type: application/x-www-form-urlencoded',
+                'content' => $postdata
+            )
+        );
+        $context = stream_context_create($options);
+        $response = file_get_contents('http://10.5.0.4:5000/api/reserver', false, $context);
 
-$_SESSION['message'] = $response;
+        $_SESSION['message'] = $response;
 
-header("Location: ../reserver.php");
+        header("Location: ../reserver.php");
+}
+
 
 ?>

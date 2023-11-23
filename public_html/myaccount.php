@@ -111,14 +111,16 @@
         </li>
        
     </ul>
+    
     <form method="post" action="./php/disconnect.php">
     <input type="hidden" name="csrf" value="' . $token . '">  
-	<button type="submit" style="text-align: center; margin-left: 30%; margin-top: 1%;" class="btn btn-outline-danger" name="disconnect">Se déconnecter</button>
-	<button type="submit" style="margin-left: 1%; margin-top: 1%;" class="btn btn-outline-primary" name="reserver">Réserver des ressources</button>
-    <button type="submit" style="margin-left: 1%; margin-top: 1%;" class="btn btn-outline-primary" name="upload">Importer des fichiers</button>
-    <button type="submit" style="margin-left: 1%; margin-top: 1%;" class="btn btn-danger" name="delete_account" onclick="return confirm(`Êtes-vous sûr de vouloir supprimer votre compte ?`); return false;">Supprimer ce compte</button>
+    <div class="row forms-perso3">
+	<div class="col"><button type="submit" class="btn btn-outline-danger" name="disconnect">Se déconnecter</button></div>
+	<div class="col"><button type="submit" class="btn btn-outline-primary" name="reserver">Réserver des ressources</button></div>
+    <div class="col"><button type="submit" class="btn btn-outline-primary" name="upload">Importer des fichiers</button></div>
+    <div class="col"><button type="submit" class="btn btn-danger" name="delete_account" onclick="return confirm(`Êtes-vous sûr de vouloir supprimer votre compte ?`); return false;">Supprimer ce compte</button></div>
 
-    </form>';
+    </div></form>';
     }
     else if(isset($_SESSION['sname']) && $_SESSION['expire'] < time()) {
       session_unset();
