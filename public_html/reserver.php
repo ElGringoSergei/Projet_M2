@@ -67,17 +67,17 @@ else { echo '<a class="nav-link" href="./login.php" id="se_connecter">Se connect
             $none = 0;
             for ($i = 0; $i < sizeof($creneaux_reserves); $i++) {
                 if ($creneaux_reserves[$i][2] == $_SESSION['username']) {
-                    echo '<li class="list-group-item d-flex justify-content-between"><div class="row">
-                    <div class="col p-2">
+                    echo '<li class="list-group-item d-flex flex-row justify-content-around">
+                    <div class="p-2">
                       <p style="font-weight: bold">Date du créneaux</p><p>' . $creneaux_reserves[$i][0] .
                     '</p></div>
-                    <div class="col p-2">
+                    <div class="p-2">
                       <p style="font-weight: bold">Heure du créneaux</p><p>' . $creneaux_reserves[$i][1] .
                     '</p></div>
-                    <div class="col p-2">
+                    <div class="p-2">
                       <p style="font-weight: bold">Fichier associé</p><p>' . $creneaux_reserves[$i][3] .
                     '</p></div>
-                    <div class="col p-2">
+                    <div class="p-2 ms-auto">
                       <form action="php/delete_reservation.php" method="post">
                           <input type="text" style="display: none" visibility="hidden" value="' . $creneaux_reserves[$i][2] . '" name="user">
                           <input type="text" style="display: none" visibility="hidden" value="' . $creneaux_reserves[$i][0] . '" name="jour">
@@ -85,7 +85,7 @@ else { echo '<a class="nav-link" href="./login.php" id="se_connecter">Se connect
                           <input type="hidden" name="csrf_del" value="' . $token_del . '">
                           <button type="submit" class="btn btn-outline-danger" style="margin-top: 10%" name="delete" onclick="return confirm(`Êtes-vous sûr de vouloir supprimer cette réservation ?`); return false;">Supprimer la réservation</button>
                       </form>
-                    </div></li>';
+                    </li>';
                     $none = 1;
                 }
             }
