@@ -21,23 +21,30 @@ class Ordonnanceur:
             print(f"La date {jour} n'est pas incluse dans les jours de l'ordonnanceur.")
 
     def reserver_creneau(self, jour, heure, personne, fichier):
-    if jour in self.jours:
-        if heure in self.creneaux_disponibles[jour] and self.creneaux_disponibles[jour][heure]:
-            self.creneaux_disponibles[jour][heure] = False
-            self.reservations[(jour, heure)] = {'personne': personne, 'fichier': fichier}
-            reponse = f"Créneau réservé par {personne} le {jour} à {heure}. Fichier associé : {fichier}."
-            return reponse
+        if jour in self.jours:
+            if heure in self.creneaux_disponibles[jour] and self.creneaux_disponibles[jour][heure]:
+                self.creneaux_disponibles[jour][heure] = False
+                self.reservations[(jour, heure)] = {'personne': personne, 'fichier': fichier}
+                reponse = f"Créneau réservé par {personne} le {jour} à {heure}. Fichier associé : {fichier}."
+                return reponse
+            else:
+                reponse = f"Le créneau à {heure} le {jour} n'est pas disponible."
+                return reponse
         else:
-            reponse = f"Le créneau à {heure} le {jour} n'est pas disponible."
+            reponse = f"La date {jour} n'est pas incluse dans les jours de l'ordonnanceur."
             return reponse
-    else:
-        reponse = f"La date {jour} n'est pas incluse dans les jours de l'ordonnanceur."
-        return reponse
 
 
 
     def afficher_creneaux_reserves(self):
-        return [(jour, heure, personne) for (jour, heure), personne in self.reservations.items()]
+        creneaux_reserves = []
+
+        for (jour, heure), details_reservation in self.reservations.items():
+            personne = details_reservation['personne']
+            fichier = details_reservation.get('fichier', None)  # Utilisez get() pour éviter une KeyError si 'fichier' n'est pas présent
+            creneaux_reserves.append((jour, heure, personne, fichier))
+
+        return creneaux_reserves
 
     def annuler_reservation(self, jour, heure):
         if jour in self.jours:
@@ -63,7 +70,6 @@ ordonnanceur_deux_semaines = Ordonnanceur([], heures_de_travail, jours_a_affiche
 douze_jours = (datetime.now() + timedelta(days=12)).strftime('%Y-%m-%d')
 if douze_jours in ordonnanceur_deux_semaines.jours:
     ordonnanceur_deux_semaines.afficher_creneaux_disponibles(douze_jours)
-    ordonnanceur_deux_semaines.reserver_creneau(douze_jours, "10:00", "mwartel")
 else:
     print(f"La date {douze_jours} n'est pas incluse dans les jours de l'ordonnanceur.")
 

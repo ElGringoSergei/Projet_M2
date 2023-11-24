@@ -114,11 +114,11 @@
     
     <form method="post" action="./php/disconnect.php">
     <input type="hidden" name="csrf" value="' . $token . '">  
-    <div class="row forms-perso3">
-	<div class="col"><button type="submit" class="btn btn-outline-danger" name="disconnect">Se déconnecter</button></div>
-	<div class="col"><button type="submit" class="btn btn-outline-primary" name="reserver">Réserver des ressources</button></div>
-    <div class="col"><button type="submit" class="btn btn-outline-primary" name="upload">Importer des fichiers</button></div>
-    <div class="col"><button type="submit" class="btn btn-danger" name="delete_account" onclick="return confirm(`Êtes-vous sûr de vouloir supprimer votre compte ?`); return false;">Supprimer ce compte</button></div>
+    <div class="d-flex flex-row justify-content-between forms-perso3">
+	<div class="p-2"><button type="submit" class="btn btn-outline-danger" name="disconnect">Se déconnecter</button></div>
+	<div class="p-2"><button type="submit" class="btn btn-outline-primary" name="reserver">Réserver des ressources</button></div>
+    <div class="p-2"><button type="submit" class="btn btn-outline-primary" name="upload">Importer des fichiers</button></div>
+    <div class="p-2"><button type="submit" class="btn btn-danger" name="delete_account" onclick="return confirm(`Êtes-vous sûr de vouloir supprimer votre compte ?`); return false;">Supprimer ce compte</button></div>
 
     </div></form>';
     }
