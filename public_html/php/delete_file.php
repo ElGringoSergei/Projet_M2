@@ -27,7 +27,7 @@ if(!isset($_POST['csrf_del'])) {
         $validation = 0;
         $creneaux_reserves = json_decode(file_get_contents("http://10.5.0.4:5000/api/creneaux_reserves"));
         for ($i = 0; $i < sizeof($creneaux_reserves); $i++) {
-            if ($_POST['file_name'] == $creneaux_reserves[$i][3]) {
+            if ($_POST['file_name'] == $creneaux_reserves[$i][3] && $_SESSION['username'] == $creneaux_reserves[$i][2]) {
                 $validation = 1;
             }
         }
