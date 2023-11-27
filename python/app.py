@@ -112,5 +112,5 @@ def api_afficher_heures():
     return jsonify(ordonnanceur_deux_semaines.heures_de_travail)
 
 if __name__ == '__main__':
-    app.run(host='10.5.0.4', port=5000, debug=True)
+    app.run(host='10.5.0.4', port=5000, debug=False)
 
