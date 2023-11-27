@@ -114,7 +114,7 @@
     
     <form method="post" action="./php/disconnect.php">
     <input type="hidden" name="csrf" value="' . $token . '">  
-    <div class="d-flex flex-row justify-content-between forms-perso3">
+    <div class="d-flex flex-row justify-content-between align-items-start forms-perso3">
 	<div class="p-2"><button type="submit" class="btn btn-outline-danger" name="disconnect">Se déconnecter</button></div>
 	<div class="p-2"><button type="submit" class="btn btn-outline-primary" name="reserver">Réserver des ressources</button></div>
     <div class="p-2"><button type="submit" class="btn btn-outline-primary" name="upload">Importer des fichiers</button></div>

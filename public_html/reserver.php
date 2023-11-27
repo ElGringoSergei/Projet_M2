@@ -122,7 +122,7 @@ else { echo '<a class="nav-link" href="./login.php" id="se_connecter">Se connect
             
 
             for ($j = 0; $j < sizeof($jours); $j++) {
-                echo '<div class="col p-2"><p style="font-weight: bold">' . $jours[$j] . "</p>";
+                echo '<div class="p-2"><p style="font-weight: bold">' . $jours[$j] . "</p>";
                 $postdata = http_build_query(
                     array(
                         'jour' => $jours[$j]
