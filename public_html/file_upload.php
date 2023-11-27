@@ -103,7 +103,7 @@ else { echo '<a class="nav-link" href="./login.php" id="se_connecter">Se connect
                     <div>
                         <?php if(isset($_GET['error']) && ($_GET['error'] == ('Désolé, ce fichier existe déjà.' || 'Désolé, le fichier est trop lourd.' || 'Désolé, seuls les fichiers PDF et JPG sont autorisés.' || "Désolé, le fichier n'a pas pû être importé." || "Désolé, il y a eu une erreur lors de l'importation de votre fichier."))) echo "<p class='error'>" . $_GET['error'] . "</p>"; ?>
                         <?php if(isset($_GET['success']) && ($_GET['success'] == ("Le fichier a été importé avec succès."))) echo "<p class='success'>" . $_GET['success'] . "</p>"; ?>
-                        <?php if(isset($_GET['delete']) && ($_GET['delete'] == ("Le fichier a bien été supprimé."))) echo "<p class='delete'>" . $_GET['delete'] . "</p>"; ?>
+                        <?php if(isset($_GET['delete']) && ($_GET['delete'] == ("Le fichier a bien été supprimé." || "Le fichier n'a pas été supprimé car il est utilisé dans l'une de vos réservations."))) echo "<p class='delete'>" . $_GET['delete'] . "</p>"; ?>
                     </div>
             </form>
             </li>
