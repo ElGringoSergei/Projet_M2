@@ -155,7 +155,7 @@ else { echo '<a class="nav-link" href="./login.php" id="se_connecter">Se connect
                         }
                     }
                     if (date("Y-m-d") == $jours[$j]) {
-                        if ($valid_heure == 1 && (int)date("h") < (int)str_replace(":*","", $heures[$m])) {
+                        if ($valid_heure == 1 && ((int)date("H") < (int)$heures[$m])) {
                             echo '<button type="submit" class="btn btn-outline-secondary" id="creneauButton" style="font-weight: bold;">' . $heures[$m] . '</button></form></div>';
                         } else {
                             echo '<button type="submit" class="btn btn-outline-secondary" style="font-weight: bold;" disabled>' . $heures[$m] . '</button></form></div>';
