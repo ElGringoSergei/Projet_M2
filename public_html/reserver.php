@@ -2,6 +2,7 @@
 ini_set("session.cookie_httponly", True);
 ini_set("session.cookie_secure", True);
 ini_set("session.cookie_samesite", "Strict");
+date_default_timezone_set('Europe/Paris');
 session_start();
 if (isset($_SESSION['id'])) {
     if ($_SESSION['expire'] < time()) {
@@ -62,6 +63,7 @@ else { echo '<a class="nav-link" href="./login.php" id="se_connecter">Se connect
     <ol class="list-group list-group forms-perso" id="page-accueil">
         <li class="list-group-item d-flex justify-content-between align-items-start">
             <div class="ms-2 me-auto" id="login-link"><span class="fw-bold nav-link nav-pages">Vos réservations</span>Retrouvez les créneaux que vous avez réservé.</div>
+            <?php echo  (int)date("h"); ?>
         </li>
         <?php
             $none = 0;
@@ -153,10 +155,18 @@ else { echo '<a class="nav-link" href="./login.php" id="se_connecter">Se connect
                             echo '<input type="hidden" name="emplacement" value="' . $o . '">';
                         }
                     }
-                    if ($valid_heure == 1) {
-                        echo '<button type="submit" class="btn btn-outline-secondary" id="creneauButton" style="font-weight: bold;">' . $heures[$m] . '</button></form></div>';
+                    if (date("Y-m-d") == $jours[$j]) {
+                        if ($valid_heure == 1 && (int)date("h") < (int)str_replace(":*","", $heures[$m])) {
+                            echo '<button type="submit" class="btn btn-outline-secondary" id="creneauButton" style="font-weight: bold;">' . $heures[$m] . '</button></form></div>';
+                        } else {
+                            echo '<button type="submit" class="btn btn-outline-secondary" style="font-weight: bold;" disabled>' . $heures[$m] . '</button></form></div>';
+                        }
                     } else {
-                        echo '<button type="submit" class="btn btn-outline-secondary" style="font-weight: bold;" disabled>' . $heures[$m] . '</button></form></div>';
+                        if ($valid_heure == 1) {
+                            echo '<button type="submit" class="btn btn-outline-secondary" id="creneauButton" style="font-weight: bold;">' . $heures[$m] . '</button></form></div>';
+                        } else {
+                            echo '<button type="submit" class="btn btn-outline-secondary" style="font-weight: bold;" disabled>' . $heures[$m] . '</button></form></div>';
+                        }
                     }
                 }
                 echo "</div>";
