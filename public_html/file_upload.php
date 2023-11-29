@@ -38,7 +38,7 @@
 <body>
     <nav class="navbar navbar-expand-lg bg-dark" data-bs-theme="dark" id="navbar-top">
         <div class="container-fluid">
-            <label class="navbar-brand">Importation de fichiers</label>
+            <label class="navbar-brand">Menu</label>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
                 data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
                 aria-label="Toggle navigation">
@@ -47,7 +47,7 @@
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav me-auto mb-2 mb-lg-0" id="navbar-list">
                     <li class="nav-item">
-                        <a class="nav-link active" aria-current="page" href="#" id="accueil-page">Accueil</a>
+                        <a class="nav-link active" aria-current="page" href="./index.php" id="accueil-page">Accueil</a>
                     </li>
                     <li class="nav-item">
 		    <?php if(isset($_SESSION['id'])) { echo '<a class="nav-link" href="./myaccount.php?id=' . $_SESSION['id'] . '" id="se_connecter">Mon compte</a>';}
