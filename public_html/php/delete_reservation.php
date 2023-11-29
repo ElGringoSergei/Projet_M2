@@ -24,7 +24,7 @@ if(!isset($_POST['csrf_del'])) {
   } else {
 
     if(isset($_POST['delete'])) {
-        shell_exec('curl -d "jour=' . $_POST['jour'] . '&heure=' . $_POST['heure'] . '" -X POST http://10.5.0.4:5000/api/annuler_reservation ');
+        shell_exec('curl -d "id_res=' . $_POST['id_res'] . '" -X POST http://10.5.0.4:5000/api/annuler_reservation ');
         header("Location: ../reserver.php?success=La réservation a bien été annulée.");
     }
 }

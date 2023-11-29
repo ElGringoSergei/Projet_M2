@@ -66,22 +66,23 @@ else { echo '<a class="nav-link" href="./login.php" id="se_connecter">Se connect
         <?php
             $none = 0;
             for ($i = 0; $i < sizeof($creneaux_reserves); $i++) {
-                if ($creneaux_reserves[$i][2] == $_SESSION['username']) {
+                if ($creneaux_reserves[$i][3] == $_SESSION['username']) {
                     echo '<li class="list-group-item d-flex flex-row justify-content-around">
-                    <div class="p-2">
+                    <div class="p-2 text-center">
                       <p style="font-weight: bold">Date du créneaux</p><p>' . $creneaux_reserves[$i][0] .
                     '</p></div>
-                    <div class="p-2">
+                    <div class="p-2 text-center">
                       <p style="font-weight: bold">Heure du créneaux</p><p>' . $creneaux_reserves[$i][1] .
                     '</p></div>
-                    <div class="p-2">
-                      <p style="font-weight: bold">Fichier associé</p><p>' . $creneaux_reserves[$i][3] .
+                    <div class="p-2 text-center">
+                      <p style="font-weight: bold">Fichier associé</p><p>' . $creneaux_reserves[$i][4] .
                     '</p></div>
+                    <div class="p-2 text-center">
+                      <p style="font-weight: bold">Nombre de noeuds</p><p>' . $creneaux_reserves[$i][5] .
+                    '</p></div>                       
                     <div class="p-2 ms-auto">
                       <form action="php/delete_reservation.php" method="post">
-                          <input type="text" style="display: none" visibility="hidden" value="' . $creneaux_reserves[$i][2] . '" name="user">
-                          <input type="text" style="display: none" visibility="hidden" value="' . $creneaux_reserves[$i][0] . '" name="jour">
-                          <input type="text" style="display: none" visibility="hidden" value="' . $creneaux_reserves[$i][1] . '" name="heure">
+                          <input type="text" style="display: none" visibility="hidden" value="' . $creneaux_reserves[$i][2] . '" name="id_res">
                           <input type="hidden" name="csrf_del" value="' . $token_del . '">
                           <button type="submit" class="btn btn-outline-danger" style="margin-top: 10%" name="delete" onclick="return confirm(`Êtes-vous sûr de vouloir supprimer cette réservation ?`); return false;">Supprimer la réservation</button>
                       </form>
@@ -144,7 +145,15 @@ else { echo '<a class="nav-link" href="./login.php" id="se_connecter">Se connect
                     echo '<form method="post" action="">';
                     echo '<input type="hidden" name="jour" value="' . $jours[$j] . '">';
                     echo '<input type="hidden" name="heure" value="' . $heures[$m] . '">';
-                    if (in_array($heures[$m], $heures_libres[$j])) {
+                    echo '<input type="hidden" name="empl_jour" value="' . $j . '">';
+                    $valid_heure = 0;
+                    for ($o = 0; $o < sizeof($heures_libres[$j]); $o++) {
+                        if (in_array($heures[$m], $heures_libres[$j][$o])) {
+                            $valid_heure = 1;
+                            echo '<input type="hidden" name="emplacement" value="' . $o . '">';
+                        }
+                    }
+                    if ($valid_heure == 1) {
                         echo '<button type="submit" class="btn btn-outline-secondary" id="creneauButton" style="font-weight: bold;">' . $heures[$m] . '</button></form></div>';
                     } else {
                         echo '<button type="submit" class="btn btn-outline-secondary" style="font-weight: bold;" disabled>' . $heures[$m] . '</button></form></div>';
@@ -179,6 +188,17 @@ else { echo '<a class="nav-link" href="./login.php" id="se_connecter">Se connect
                 $elements = str_replace('"', '', explode("|", str_replace('||', '|', $arr_files[$i])));
                 echo '<option value="' . $elements[8] . '">' . $elements[8] . '</option>';
             }; ?>
+        </select>
+    </div>
+    <div class="input-group mb-3">
+        <label class="input-group-text" for="input2">Options</label>
+        <select class="form-select" id="input2" name="nombre_cartes" required>
+            <option value="">Choisissez le nombre de noeuds à utiliser</option>
+            <?php
+            for ($nodes = 1; $nodes <= $heures_libres[$_POST['empl_jour']][$_POST['emplacement']][1]; $nodes++) {
+                echo '<option value="' . $nodes . '">' . $nodes . '</option>';
+            }
+            ?>
         </select>
     </div>
     <button type="submit" class="btn btn-outline-secondary" onclick="validerReservation();">Réserver ce créneau</button>

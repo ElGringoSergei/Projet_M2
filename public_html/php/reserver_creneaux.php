@@ -28,22 +28,23 @@ if(!isset($_POST['csrf'])) {
         'jour' => $_POST['jour'],
         'heure' => $_POST['heure'],
         'personne' => $_SESSION['username'],
-        'nom_fichier' => $_POST['file_name']
+        'nom_fichier' => $_POST['file_name'],
+        'nombre_cartes' => $_POST['nombre_cartes']
     )
-        );
-        $options = array('http' =>
-            array(
-                'method' => 'POST',
-                'header' => 'Content-type: application/x-www-form-urlencoded',
-                'content' => $postdata
-            )
-        );
-        $context = stream_context_create($options);
-        $response = file_get_contents('http://10.5.0.4:5000/api/reserver', false, $context);
+    );
+    $options = array('http' =>
+        array(
+            'method' => 'POST',
+            'header' => 'Content-type: application/x-www-form-urlencoded',
+            'content' => $postdata
+        )
+    );
+    $context = stream_context_create($options);
+    $response = file_get_contents('http://10.5.0.4:5000/api/reserver', false, $context);
 
-        $_SESSION['message'] = $response;
+    $_SESSION['message'] = $response;
 
-        header("Location: ../reserver.php");
+    header("Location: ../reserver.php");
 }
 
 
