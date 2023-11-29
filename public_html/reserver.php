@@ -48,7 +48,7 @@ $arr_files = str_replace('"', '', explode('\n', $files));
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav me-auto mb-2 mb-lg-0" id="navbar-list">
                     <li class="nav-item">
-                        <a class="nav-link active" aria-current="page" href="#" id="accueil-page">Accueil</a>
+                        <a class="nav-link active" aria-current="page" href="./index.php" id="accueil-page">Accueil</a>
                     </li>
                     <li class="nav-item">
 		    <?php if(isset($_SESSION['id'])) { echo '<a class="nav-link" href="./myaccount.php?id=' . $_SESSION['id'] . '" id="se_connecter">Mon compte</a>';}

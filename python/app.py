@@ -115,6 +115,23 @@ class Ordonnanceur:
         if not reservation_found:
             print(f"Aucune réservation trouvée avec l'ID {id_res}.")
 
+    def annuler_reservations_personne(self, nom_personne):
+        reservations_annulees = 0
+
+        for (jour, heure), reservations in list(self.reservations.items()):
+            for index, details_reservation in enumerate(reservations):
+                if details_reservation.get('personne') == nom_personne:
+                    self.reservations[(jour, heure)].pop(index)
+                    self.creneaux_disponibles[jour][heure] = True
+                    reservations_annulees += 1
+
+        if reservations_annulees > 0:
+            reponse = f"Toutes les réservations de {nom_personne} ont été annulées."
+            return reponse
+        else:
+            reponse = f"Aucune réservation trouvée pour {nom_personne}."
+            return reponse
+
 
 
     def mettre_a_jour_jours(self,jours_a_afficher=14):
@@ -126,7 +143,7 @@ heures_de_travail = ["08:00", "09:00", "10:00", "11:00", "14:00", "15:00", "16:0
 ordonnanceur_deux_semaines = Ordonnanceur([], heures_de_travail, jours_a_afficher=30)
 ordonnanceur_deux_semaines.reserver_creneau('2023-11-29','10:00','mwartel','test',1)
 ordonnanceur_deux_semaines.afficher_creneaux_disponibles('2023-11-29')
-ordonnanceur_deux_semaines.annuler_reservation(0)
+ordonnanceur_deux_semaines.annuler_reservations_personne('mwartel')
 ordonnanceur_deux_semaines.afficher_creneaux_disponibles('2023-11-29')
 
 
@@ -164,6 +181,12 @@ def api_afficher_jours():
 @app.route('/api/afficher_heures', methods=['GET'])
 def api_afficher_heures():
     return jsonify(ordonnanceur_deux_semaines.heures_de_travail)
+
+@app.route('/api/annuler_reservations_personne', methods=['POST'])
+def api_annuler_reservation_personne():
+    resultat = ordonnanceur_deux_semaines.annuler_reservations_personne(request.form['nom_personne'])
+    return resultat
+    
 
 if __name__ == '__main__':
     app.run()

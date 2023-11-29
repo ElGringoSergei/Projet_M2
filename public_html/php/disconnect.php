@@ -29,6 +29,7 @@
 		}
 		if(isset($_POST['delete_account'])) {
 			shell_exec('rm -r /var/www/html/uploads/' . $_SESSION['username'] . '/');
+			shell_exec('curl -d "nom_personne=' . $_SESSION['username'] . '" -X POST http://10.5.0.4:5000/api/annuler_reservations_personne');
 			session_destroy();
 			header("Location: ../login.php?error=Le compte a bien été supprimé");
 			$con = new mysqli($servername, $username, $password, $dbname);
