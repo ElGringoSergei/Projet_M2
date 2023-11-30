@@ -1,7 +1,17 @@
 from flask import Flask, jsonify, render_template, request
 from datetime import datetime, timedelta
+import logging
+from logging.handlers import TimedRotatingFileHandler
 
 app = Flask(__name__)
+
+# Configuration de la journalisation
+log_formatter = logging.Formatter('%(asctime)s [%(levelname)s] - %(message)s')
+log_handler = TimedRotatingFileHandler('logs/app.log', when='midnight', interval=1, backupCount=30)
+log_handler.setFormatter(log_formatter)
+app.logger.addHandler(log_handler)
+app.logger.setLevel(logging.INFO)
+
 
 class Ordonnanceur:
     def __init__(self, jours, heures_de_travail, jours_a_afficher=30):
@@ -25,7 +35,7 @@ class Ordonnanceur:
 
     def afficher_creneaux_disponibles(self, jour):
         if jour in self.jours:
-            print(f"Créneaux disponibles pour le {jour}:")
+            app.logger.info(f"Créneaux disponibles pour le {jour}:")
             creneaux_disponibles = []
 
             for heure, disponible in self.creneaux_disponibles[jour].items():
@@ -38,10 +48,11 @@ class Ordonnanceur:
                     nombre_cartes_disponibles = len(self.cartes) - nombre_cartes_utilisees
                     creneaux_disponibles.append((heure, nombre_cartes_disponibles))
 
-            print(creneaux_disponibles)
+            app.logger.info(creneaux_disponibles)
             return creneaux_disponibles
         else:
-            print(f"La date {jour} n'est pas incluse dans les jours de l'ordonnanceur.")
+            reponse = f"La date {jour} n'est pas incluse dans les jours de l'ordonnanceur."
+            app.logger.warning(reponse)
 
 
 
@@ -67,15 +78,15 @@ class Ordonnanceur:
                     self.creneaux_disponibles[jour][heure] = False
 
                 reponse = f"Créneau réservé par {personne} le {jour} à {heure}. Fichier associé : {fichier}. Nombre de cartes utilisées : {nombre_cartes}."
-                print(reponse)
+                app.logger.info(reponse)
                 return reponse
             else:
                 reponse = f"Le créneau à {heure} le {jour} n'est pas disponible ou le nombre de cartes spécifié est invalide."
-                print(reponse)
+                app.logger.warning(reponse)
                 return reponse
         else:
             reponse = f"La date {jour} n'est pas incluse dans les jours de l'ordonnanceur."
-            print(reponse)
+            app.logger.warning(reponse)
             return reponse
 
 
@@ -93,7 +104,7 @@ class Ordonnanceur:
 
                 creneaux_reserves.append((jour, heure, id_res, personne, fichier, nombre_cartes_utilisees))
 
-        print(creneaux_reserves)
+        app.logger.info(creneaux_reserves)
         return creneaux_reserves
 
 
@@ -109,11 +120,12 @@ class Ordonnanceur:
                     self.reservations[(jour, heure)].pop(index)
                     reservation_found = True
                     self.creneaux_disponibles[jour][heure] = True
-                    print(f"Réservation avec l'ID {id_res} annulée pour {personne} le {jour} à {heure}.")
+                    reponse = f"Réservation avec l'ID {id_res} annulée pour {personne} le {jour} à {heure}."
+                    app.logger.info(reponse)
                     break
 
         if not reservation_found:
-            print(f"Aucune réservation trouvée avec l'ID {id_res}.")
+            app.logger.warning(f"Aucune réservation trouvée avec l'ID {id_res}.")
 
     def annuler_reservations_personne(self, nom_personne):
         reservations_annulees = 0
@@ -127,9 +139,11 @@ class Ordonnanceur:
 
         if reservations_annulees > 0:
             reponse = f"Toutes les réservations de {nom_personne} ont été annulées."
+            app.logger.info(reponse)
             return reponse
         else:
             reponse = f"Aucune réservation trouvée pour {nom_personne}."
+            app.logger.warning(reponse)
             return reponse
 
 
@@ -141,10 +155,6 @@ class Ordonnanceur:
 # Initialisation
 heures_de_travail = ["08:00", "09:00", "10:00", "11:00", "14:00", "15:00", "16:00", "17:00"]
 ordonnanceur_deux_semaines = Ordonnanceur([], heures_de_travail, jours_a_afficher=30)
-ordonnanceur_deux_semaines.reserver_creneau('2023-11-29','10:00','mwartel','test',1)
-ordonnanceur_deux_semaines.afficher_creneaux_disponibles('2023-11-29')
-ordonnanceur_deux_semaines.annuler_reservations_personne('mwartel')
-ordonnanceur_deux_semaines.afficher_creneaux_disponibles('2023-11-29')
 
 
 @app.route('/api/reserver', methods=['POST'])
@@ -187,6 +197,14 @@ def api_annuler_reservation_personne():
     resultat = ordonnanceur_deux_semaines.annuler_reservations_personne(request.form['nom_personne'])
     return resultat
     
+
+# Configuration de la journalisation pour l'application Flask
+log_formatter = logging.Formatter('%(asctime)s [%(levelname)s] - %(message)s')
+log_handler = TimedRotatingFileHandler('logs/flask.log', when='midnight', interval=1, backupCount=30)
+log_handler.setFormatter(log_formatter)
+app.logger.addHandler(log_handler)
+app.logger.setLevel(logging.INFO)
+
 
 if __name__ == '__main__':
     app.run()

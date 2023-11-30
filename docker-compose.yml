@@ -26,8 +26,11 @@ services:
       - ./public_html:/var/www/html
       - ./tmp:/usr/local/tmp
   mysql:
+    user: root
     build: './mysql'
     restart: always
+    volumes:
+      - ./database:/var/lib/mysql
     networks:
       backend:
         ipv4_address: 10.5.0.3
@@ -36,6 +39,8 @@ services:
     build: './python'
     tty: true
     restart: always
+    volumes:
+      - ./python/logs:/home/ubuntu/logs
     networks:
       backend:
         ipv4_address: 10.5.0.4
