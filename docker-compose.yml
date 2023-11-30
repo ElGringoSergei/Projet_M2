@@ -41,6 +41,7 @@ services:
     restart: always
     volumes:
       - ./python/logs:/home/ubuntu/logs
+      - ./python/home:/home/ubuntu/scripts
     networks:
       backend:
         ipv4_address: 10.5.0.4
