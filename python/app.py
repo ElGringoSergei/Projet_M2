@@ -48,7 +48,6 @@ class Ordonnanceur:
                     nombre_cartes_disponibles = len(self.cartes) - nombre_cartes_utilisees
                     creneaux_disponibles.append((heure, nombre_cartes_disponibles))
 
-            app.logger.info(creneaux_disponibles)
             return creneaux_disponibles
         else:
             reponse = f"La date {jour} n'est pas incluse dans les jours de l'ordonnanceur."
@@ -131,11 +130,13 @@ class Ordonnanceur:
         reservations_annulees = 0
 
         for (jour, heure), reservations in list(self.reservations.items()):
-            for index, details_reservation in enumerate(reservations):
+            reduce_var = 0
+            for index, details_reservation in list(enumerate(reservations)):
                 if details_reservation.get('personne') == nom_personne:
-                    self.reservations[(jour, heure)].pop(index)
+                    self.reservations[(jour, heure)].pop(index - reduce_var)
                     self.creneaux_disponibles[jour][heure] = True
                     reservations_annulees += 1
+                    reduce_var += 1
 
         if reservations_annulees > 0:
             reponse = f"Toutes les réservations de {nom_personne} ont été annulées."
