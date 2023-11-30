@@ -35,7 +35,6 @@ class Ordonnanceur:
 
     def afficher_creneaux_disponibles(self, jour):
         if jour in self.jours:
-            app.logger.info(f"Créneaux disponibles pour le {jour}:")
             creneaux_disponibles = []
 
             for heure, disponible in self.creneaux_disponibles[jour].items():
