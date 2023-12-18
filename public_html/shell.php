@@ -15,6 +15,7 @@ if (isset($_SESSION['id'])) {
 }
 $token = bin2hex(random_bytes(16));
 $_SESSION['csrf'] = $token;
+if(!isset($_SESSION['final_text'])) { $_SESSION['final_text'] = ""; }
 if(isset($_POST['command'])) {
     $postdata = http_build_query(
         array(
@@ -46,8 +47,11 @@ if(isset($_POST['command'])) {
 
     curl_close($ch);
 } else {
-    $text_content = '';
+    $text_content['error'] = '';
+    $text_content['output'] = '';
 }
+if($text_content['error'] != '') { $_SESSION['final_text'] = $_SESSION['final_text'] . $text_content['error']; } else { $_SESSION['final_text'] = $_SESSION['final_text'] . $text_content['output']; }
+
 ?>
 
 <!-- index.html -->
@@ -59,7 +63,7 @@ if(isset($_POST['command'])) {
     <title>Remote Shell</title>
 </head>
 <body>
-    <textarea id="output" rows="10" cols="50" readonly><?php echo $text_content['error']; echo $text_content['output']; ?></textarea>
+    <textarea id="output" rows="10" cols="50" readonly><?php echo $_SESSION['final_text'] ?></textarea>
     <form method="post" action="#">
     	<input type="text" id="command" name="command" placeholder="Entrer une commande">
     	<button type="submit">Envoyer la commande</button>
