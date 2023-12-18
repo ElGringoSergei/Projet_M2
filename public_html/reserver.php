@@ -197,6 +197,7 @@ else { echo '<a class="nav-link" href="./login.php" id="se_connecter">Se connect
                 $elements = str_replace('"', '', explode("|", str_replace('||', '|', $arr_files[$i])));
                 echo '<option value="' . $elements[8] . '">' . $elements[8] . '</option>';
             }; ?>
+            <option value="terminal">En mode terminal libre</option>
         </select>
     </div>
     <div class="input-group mb-3">

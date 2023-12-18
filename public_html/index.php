@@ -62,6 +62,9 @@ else { echo '<a class="nav-link" href="./login.php" id="se_connecter">Se connect
             </li>
         </ol>
     </div>
+    <div>
+    	<a href="shell.php">Test shell</a>
+    </div>
 </body>
 
 </html>

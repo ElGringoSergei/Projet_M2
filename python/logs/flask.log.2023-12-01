@@ -1,0 +1,32 @@
+2023-12-01 11:39:17,989 [INFO] - []
+2023-12-01 11:39:20,272 [INFO] - []
+2023-12-01 11:39:26,371 [INFO] - Créneau réservé par test le 2023-12-01 à 15:00. Fichier associé : Rapport_24.11.2023_M2_WARTEL_MERLE.pdf. Nombre de cartes utilisées : 1.
+2023-12-01 11:39:26,380 [INFO] - [('2023-12-01', '15:00', 0, 'test', 'Rapport_24.11.2023_M2_WARTEL_MERLE.pdf', 1)]
+2023-12-01 11:39:28,344 [INFO] - [('2023-12-01', '15:00', 0, 'test', 'Rapport_24.11.2023_M2_WARTEL_MERLE.pdf', 1)]
+2023-12-01 11:39:33,927 [INFO] - Créneau réservé par test le 2023-12-01 à 15:00. Fichier associé : Rapport_24.11.2023_M2_WARTEL_MERLE.pdf. Nombre de cartes utilisées : 2.
+2023-12-01 11:39:33,936 [INFO] - [('2023-12-01', '15:00', 0, 'test', 'Rapport_24.11.2023_M2_WARTEL_MERLE.pdf', 1), ('2023-12-01', '15:00', 1, 'test', 'Rapport_24.11.2023_M2_WARTEL_MERLE.pdf', 2)]
+2023-12-01 11:39:48,442 [INFO] - Réservation avec l'ID 1 annulée pour test le 2023-12-01 à 15:00.
+2023-12-01 11:39:48,457 [INFO] - [('2023-12-01', '15:00', 0, 'test', 'Rapport_24.11.2023_M2_WARTEL_MERLE.pdf', 1)]
+2023-12-01 11:39:53,308 [INFO] - Réservation avec l'ID 0 annulée pour test le 2023-12-01 à 15:00.
+2023-12-01 11:39:53,319 [INFO] - []
+2023-12-01 11:40:01,195 [INFO] - []
+2023-12-01 11:40:05,975 [INFO] - []
+2023-12-01 11:40:32,264 [INFO] - []
+2023-12-01 11:40:33,877 [INFO] - []
+2023-12-01 11:40:39,414 [INFO] - Créneau réservé par test le 2023-12-02 à 14:00. Fichier associé : Rapport_27.10.2023_M2_WARTEL_MERLE.pdf. Nombre de cartes utilisées : 3.
+2023-12-01 11:40:39,426 [INFO] - [('2023-12-02', '14:00', 2, 'test', 'Rapport_27.10.2023_M2_WARTEL_MERLE.pdf', 3)]
+2023-12-01 11:51:34,726 [INFO] - Réservation avec l'ID 2 annulée pour test le 2023-12-02 à 14:00.
+2023-12-01 11:51:34,740 [INFO] - []
+2023-12-01 11:51:57,886 [INFO] - []
+2023-12-01 11:51:59,633 [INFO] - []
+2023-12-01 11:52:04,243 [INFO] - Créneau réservé par test le 2023-12-02 à 11:00. Fichier associé : Rapport_27.10.2023_M2_WARTEL_MERLE.pdf. Nombre de cartes utilisées : 1.
+2023-12-01 11:52:04,255 [INFO] - [('2023-12-02', '11:00', 3, 'test', 'Rapport_27.10.2023_M2_WARTEL_MERLE.pdf', 1)]
+2023-12-01 11:52:06,052 [INFO] - [('2023-12-02', '11:00', 3, 'test', 'Rapport_27.10.2023_M2_WARTEL_MERLE.pdf', 1)]
+2023-12-01 11:52:12,135 [INFO] - Créneau réservé par test le 2023-12-02 à 10:00. Fichier associé : Rapport_27.10.2023_M2_WARTEL_MERLE.pdf. Nombre de cartes utilisées : 4.
+2023-12-01 11:52:12,145 [INFO] - [('2023-12-02', '11:00', 3, 'test', 'Rapport_27.10.2023_M2_WARTEL_MERLE.pdf', 1), ('2023-12-02', '10:00', 4, 'test', 'Rapport_27.10.2023_M2_WARTEL_MERLE.pdf', 4)]
+2023-12-01 11:52:35,140 [INFO] - [('2023-12-02', '11:00', 3, 'test', 'Rapport_27.10.2023_M2_WARTEL_MERLE.pdf', 1), ('2023-12-02', '10:00', 4, 'test', 'Rapport_27.10.2023_M2_WARTEL_MERLE.pdf', 4)]
+2023-12-01 11:52:42,024 [INFO] - Réservation avec l'ID 4 annulée pour test le 2023-12-02 à 10:00.
+2023-12-01 11:52:42,033 [INFO] - [('2023-12-02', '11:00', 3, 'test', 'Rapport_27.10.2023_M2_WARTEL_MERLE.pdf', 1)]
+2023-12-01 11:52:43,553 [INFO] - Réservation avec l'ID 3 annulée pour test le 2023-12-02 à 11:00.
+2023-12-01 11:52:43,563 [INFO] - []
+2023-12-01 11:53:05,173 [WARNING] - Aucune réservation trouvée pour test.
